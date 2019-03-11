@@ -53,6 +53,7 @@ bot.on('message', (message) => {
             let mem = message.mentions.members.first();
             let r = args.slice(2).join(" ");
             chan.send(mem.displayName+" a été banni par "+admin.displayName +" pour la raison : "+r);
+            mem.send
             mem.ban();
         }
     }
@@ -66,6 +67,19 @@ bot.on('message', (message) => {
             } else {
                 message.channel.send("Vous n'avez pas mis le texte à dire.");
             }
+        }
+    }
+    if (message.content.startsWith("-group")) {
+        if (message.guild.name=="Escape Hub") {
+            message.channel.send("Vous ne pouvez pas effectuez cette commande sur ce serveur.");
+        } else {
+            let mem = message.guild.members.find('id',message.author.id);
+            if (mem.roles.exists('hexColor',"#9033ca")) {
+                message.channel.send("Vous êtes déjà dans un groupe.");
+            } else {
+                const args = message.content.slice(1).trim().split(/ +/g);
+            }
+
         }
     }
 });
