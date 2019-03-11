@@ -86,7 +86,7 @@ bot.on('message', (message) => {
                     }).then(role => {mem.addRole(role); role.setHoist(true)});
                     message.guild.createRole({
                         name: nom+" - I",
-                        color: 9450442,
+                        color: 9450441,
                     });
                 } else if (args[1]=="invite") {
                     message.mentions.members.first().addRole(message.guild.roles.find('name',mem.roles.find('hexColor',"#9033ca").name+" - I"));
