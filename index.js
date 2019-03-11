@@ -74,8 +74,28 @@ bot.on('message', (message) => {
         } else {
             let mem = message.guild.members.find('id',message.author.id);
             if (mem.roles.exists('hexColor',"#9033ca")) {
-                message.channel.send("Vous êtes déjà dans un groupe.");
-                message.channel.send(message.guild.roles.find('hexColor',"#9033ca").color);
+                if (args[1]=="leave") {
+                    if (mem.roles.exists('hexColor',"#9033ca")) {
+                        let role = message.guild.roles.find('name',mem.roles.find('hexColor',"#9033ca").name);
+                        let role2 = message.guild.roles.find('name',mem.roles.find('hexColor',"#9033ca").name+" - I");
+                        mem.removeRole(role);
+                        if (role.members.size==0) {
+                            role.delete();
+                            role2.delete();
+                        }
+                    } else {
+                        message.channel.send("Vous n'êtes dans aucun groupe.");
+                    }
+                } else if (args[1]=="invite") {
+                    if (mem.roles.exists('hexColor',"#9033ca")) {
+                        message.mentions.members.first().addRole(message.guild.roles.find('name',mem.roles.find('hexColor',"#9033ca").name+" - I"));
+                    } else {
+                        message.channel.send("Vous n'êtes dans aucun groupe.");
+                    }
+                } else {
+                    message.channel.send("Vous êtes déjà dans un groupe.");
+                    message.channel.send(message.guild.roles.find('hexColor',"#9033ca").color);
+                }
             } else {
                 const args = message.content.slice(1).trim().split(/ +/g);
                 if (args[1]=="create") {
@@ -88,12 +108,6 @@ bot.on('message', (message) => {
                         name: nom+" - I",
                         color: 9450441,
                     });
-                } else if (args[1]=="invite") {
-                    if (mem.roles.exists('hexColor',"#9033ca")) {
-                        message.mentions.members.first().addRole(message.guild.roles.find('name',mem.roles.find('hexColor',"#9033ca").name+" - I"));
-                    } else {
-                        message.channel.send("Vous n'êtes dans aucun groupe.");
-                    }
                 } else if (args[1]=="join") {
                     let nom = args.slice(2).join(" ");
                     if (mem.roles.find('name',nom+" - I")) {
@@ -102,18 +116,6 @@ bot.on('message', (message) => {
                         mem.addRole(message.guild.roles.find('name',nom));
                     } else {
                         message.channel.send("Vous n'êtes pas invité dans ce groupe. (Vérifiez l'orthographe et les majuscules)");
-                    }
-                } else if (args[1]=="leave") {
-                    if (mem.roles.exists('hexColor',"#9033ca")) {
-                        let role = message.guild.roles.find('name',mem.roles.find('hexColor',"#9033ca").name);
-                        let role2 = message.guild.roles.find('name',mem.roles.find('hexColor',"#9033ca").name+" - I");
-                        mem.removeRole(role);
-                        if (role.members.size==0) {
-                            role.delete();
-                            role2.delete();
-                        }
-                    } else {
-                        message.channel.send("Vous n'êtes dans aucun groupe.");
                     }
                 }
             }
