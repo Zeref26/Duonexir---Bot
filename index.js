@@ -84,8 +84,21 @@ bot.on('message', (message) => {
                         name: nom,
                         color: 9450442,
                     }).then(role => {mem.addRole(role); role.setHoist(true)});
-                } else {
-                    message.channel.send("Nope.");
+                    message.guild.createRole({
+                        name: nom+" - I",
+                        color: 9450442,
+                    });
+                } else if (args[1]=="invite") {
+                    message.mentions.members.first().addRole(message.guild.roles.find('name',mem.roles.find('hexColor',"#9033ca").name+" - I"));
+                } else if (args[1]=="join") {
+                    let nom = args.slice(2).join(" ");
+                    if (mem.roles.find('name',nom+" - I")) {
+                        message.channel.send("Vous avez rejoint "+nom+" avec succès.");
+                        mem.removeRole(mem.roles.find('name',nom+" - I"));
+                        mem.addRole(message.guild.roles.find('name',nom));
+                    } else {
+                        message.channel.send("Vous n'êtes pas invité dans ce groupe. (Vérifiez l'orthographe et les majuscules)");
+                    }
                 }
             }
 
