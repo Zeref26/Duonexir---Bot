@@ -77,6 +77,13 @@ bot.on('message', (message) => {
                 message.channel.send("Vous êtes déjà dans un groupe.");
             } else {
                 const args = message.content.slice(1).trim().split(/ +/g);
+                if (args[1]=="create") {
+                    let nom = args.slice(2).join(" ");
+                    message.guild.createRole({
+                        name: nom,
+                        hexcolor: '#9033ca',
+                    }).then(role => mem.addRole(role));
+                }
             }
 
         }
