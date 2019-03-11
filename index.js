@@ -81,8 +81,10 @@ bot.on('message', (message) => {
                     let nom = args.slice(3).join(" ");
                     message.guild.createRole({
                         name: nom,
-                        hexcolor: '#9033ca',
+                        hexColor: "#9033ca"
                     }).then(role => mem.addRole(role));
+                } else {
+                    message.channel.send("Nope.");
                 }
             }
 
