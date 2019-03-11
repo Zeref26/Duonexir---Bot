@@ -72,6 +72,7 @@ bot.on('message', (message) => {
         if (message.guild.name=="Escape Hub") {
             message.channel.send("Vous ne pouvez pas effectuez cette commande sur ce serveur.");
         } else {
+            const args = message.content.slice(1).trim().split(/ +/g);
             let mem = message.guild.members.find('id',message.author.id);
             if (mem.roles.exists('hexColor',"#9033ca")) {
                 if (args[1]=="leave") {
@@ -97,7 +98,6 @@ bot.on('message', (message) => {
                     message.channel.send(message.guild.roles.find('hexColor',"#9033ca").color);
                 }
             } else {
-                const args = message.content.slice(1).trim().split(/ +/g);
                 if (args[1]=="create") {
                     let nom = args.slice(2).join(" ");
                     message.guild.createRole({
