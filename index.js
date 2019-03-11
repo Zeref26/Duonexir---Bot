@@ -75,14 +75,15 @@ bot.on('message', (message) => {
             let mem = message.guild.members.find('id',message.author.id);
             if (mem.roles.exists('hexColor',"#9033ca")) {
                 message.channel.send("Vous êtes déjà dans un groupe.");
+                message.channel.send(message.guild.roles.find('hexColor',"#9033ca").color);
             } else {
                 const args = message.content.slice(1).trim().split(/ +/g);
-                if (args[2]=="create") {
-                    let nom = args.slice(3).join(" ");
+                if (args[1]=="create") {
+                    let nom = args.slice(2).join(" ");
                     message.guild.createRole({
                         name: nom,
-                        hexColor: "#9033ca"
-                    }).then(role => mem.addRole(role));
+                        color: 9450442,
+                    }).then(role => {mem.addRole(role); role.setHoist(true)});
                 } else {
                     message.channel.send("Nope.");
                 }
