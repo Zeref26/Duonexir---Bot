@@ -12,10 +12,9 @@ bot.on("guildMemberAdd", member => {
 });
 
 bot.on('message', (message) => {
-    let serv = bot.guilds.find('name',"Escape Hub");
     let chan = message.guild.channels.find('name','logs');
-    let member = serv.members.find('id',message.author.id);
-    if (!(message.author.id == "536307206958612491" || message.author.id == "235148962103951360" || message.author.id == "429333319264501780" || message.author.id == "366770566331629579" || message.author.id == "280726849842053120" || message.author.id == "433987827642925076" || message.author.id == "276060004262477825" || message.channel.name == "historique-message")) {
+    let member = message.guild.members.find('id',message.author.id);
+    if (!(message.author.id == "536307206958612491" || message.author.id == "235148962103951360" || message.author.id == "429333319264501780" || message.author.id == "366770566331629579" || message.author.id == "280726849842053120" || message.author.id == "433987827642925076" || message.author.id == "276060004262477825" || message.channel.name == "historique-message") && message.guild.name=='Escape Hub') {
         message.guild.channels.find('name',"historique-message").send(message.createdAt+" "+message.channel+" "+message.author.username+" : "+message);
     }
     if (message.content == "-partenariat") {
