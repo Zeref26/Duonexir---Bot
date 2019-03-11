@@ -6,9 +6,8 @@ bot.on('ready', () => {
 });
 
 bot.on("guildMemberAdd", member => {
-    member.addRole(bot.guilds.find('name',"Escape Hub").roles.find('name',"----------{Membre}----------"));
-    member.addRole(bot.guilds.find('name',"Escape Hub").roles.find('name',"----------{Jeux}----------"));
-    member.addRole(bot.guilds.find('name',"Escape Hub").roles.find('name',"----------{Tags}----------"));
+    member.addRole(bot.guilds.find('name',"Escape Hub").roles.find('name',"--------------{Jeux}--------------"));
+    member.addRole(bot.guilds.find('name',"Escape Hub").roles.find('name',"--------------{Tags}--------------"));
 });
 
 bot.on('message', (message) => {
