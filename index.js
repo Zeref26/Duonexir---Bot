@@ -80,6 +80,7 @@ bot.on('message', (message) => {
                         let role = message.guild.roles.find('name',mem.roles.find('hexColor',"#9033ca").name);
                         let role2 = message.guild.roles.find('name',mem.roles.find('hexColor',"#9033ca").name+" - I");
                         mem.removeRole(role);
+                        message.channel.send(role.members.size+"voilà");
                         if (role.members.size==0) {
                             role.delete();
                             role2.delete();
