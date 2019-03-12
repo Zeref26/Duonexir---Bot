@@ -10,6 +10,18 @@ bot.on("guildMemberAdd", member => {
     member.addRole(bot.guilds.find('name',"Escape Hub").roles.find('name',"--------------{Tags}--------------"));
 });
 
+bot.on('messageDelete', message => {
+    if (!(message.author.id == "536307206958612491" || message.author.id == "235148962103951360" || message.author.id == "429333319264501780" || message.author.id == "366770566331629579" || message.author.id == "280726849842053120" || message.author.id == "433987827642925076" || message.author.id == "276060004262477825" || message.channel.name == "historique-message") && message.guild.name=='Escape Hub') {
+        message.guild.channels.find('name',"historique-message").send(message.createdAt+" "+message.channel+" "+message.author.username+" : "+message);
+    }
+});
+
+bot.on('messageUpdate', (old_message, new_message) => {
+    if (!(new_message.author.id == "536307206958612491" || new_message.author.id == "235148962103951360" || new_message.author.id == "429333319264501780" || new_message.author.id == "366770566331629579" || new_message.author.id == "280726849842053120" || new_message.author.id == "433987827642925076" || new_message.author.id == "276060004262477825" || new_message.channel.name == "historique-message") && new_message.guild.name=='Escape Hub') {
+        new_message.guild.channels.find('name',"historique-message").send(new_message.createdAt+" "+new_message.channel+" "+new_message.author.username+" : "+new_message+"```\nanciennement\n```"+old_message);
+    }
+})
+
 bot.on('message', (message) => {
     let chan = message.guild.channels.find('name','logs');
     let member = message.guild.members.find('id',message.author.id);
