@@ -63,6 +63,8 @@ bot.on('message', (message) => {
             const args = message.content.slice(1).trim().split(/ +/g);
             if (args.length>=2) {
                 message.channel.send(args.slice(1).join(" "));
+                let chan = message.guild.channels.find('name','logs');
+                chan.send(admin.displayName+" a fait écrire au bot : "+args.slice(1).join(" "));
             } else {
                 message.channel.send("Vous n'avez pas mis le texte à dire.");
             }
