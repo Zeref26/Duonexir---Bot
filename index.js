@@ -22,6 +22,7 @@ bot.on('message', message => {
         const args = message.content.slice(1).trim().split(/ +/g);
         if (member.roles.exists('name',"Nouveau")){
             if (args[0].toLowerCase() == "captcha") {
+                message.delete();
                 bot.channels.get("563452601669124097").fetchMessages({limit:99}).then(messages => {
                     messages.forEach((msg) => {
                         let captcha = "";
@@ -36,6 +37,9 @@ bot.on('message', message => {
                             if (captcha == args[1]) {
                                 member.removeRole(message.guild.roles.find('name',"Nouveau"));
                                 member.addRole(message.guild.roles.find('name',"Membre"));
+                                msg.delete();
+                            } else {
+                                message.channel.send("Captcha incorrect !");
                             }
                         }
                     });
