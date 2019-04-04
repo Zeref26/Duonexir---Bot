@@ -29,7 +29,7 @@ bot.on('message', message => {
                             for (var i = 0; i < msg.content.length; i++){
                                 if (msg.content.charAt(i) == ":"){
                                     for (var j = i+2 ; j < msg.content.length; j++){
-                                        money += msg.content.charAt(j);
+                                        captcha += msg.content.charAt(j);
                                     }
                                 }
                             }
