@@ -12,11 +12,12 @@ bot.on('guildMemberAdd', member => {
     let a = Math.floor(Math.random()*10)+1;
     let b = Math.floor(Math.random()*10)+1;
     bot.channels.find('id',"563452601669124097").send(member.id+" : "+(a+b));
-    member.send("Bienvenue à toi sur Duonexir, avant de pouvoir avoir accès au serveur, merci de valider ce captcha dans #captcha avec la commande -captcha [réponse]/n "+a+" + "+b+" = ?");
+    member.send("Bienvenue à toi sur ***Duonexir***, avant de pouvoir avoir accès au serveur, merci de valider ce captcha dans **#captcha** avec la commande *-captcha [réponse]*\n*** "+a+" + "+b+" = ?***");
 });
 
 bot.on('message', message => {
-    let member = message.guild.members.find('id', message.author.id);
+    let serveur = bot.guilds.find('name',"Duonexir");
+    let member = serveur.members.find('id', message.author.id);
     if (message.content.startsWith('-')) {
         const args = message.content.slice(1).trim().split(/ +/g);
         if (member.roles.exists('name',"Nouveau")){
