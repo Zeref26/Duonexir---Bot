@@ -72,8 +72,10 @@ bot.on('message', message => {
             // Pour le staff
         if (member.roles.exists('name', "Administrateur") || member.roles.exists('name', "Fondateur")) {
             if (command == "valide") {
-                if (message.mentions.members.length == 1) {
+                message.delete();
+                if (message.mentions.members.size == 1) {
                     message.mentions.members.first().addRole(serveur.roles.find('name', "Rôliste"));
+                    message.mentions.members.first().removeRole(serveur.roles.find('name', "Sans fiche"));
                     message.mentions.members.first().send("Votre fiche vient d'être validée, vous pouvais désormais participer au RP.");
                     serveur.channels.find('id', "563475707632812032").send("La fiche de "+message.mentions.members.first().displayName+" est validée. Bienvenue dans le RP.");
                 } else {
@@ -91,9 +93,9 @@ bot.on('messageDelete', message => {
 });
 
 bot.on('messageUpdate', (old_message, new_message) => {
-    if (message.author.id != 446778406382600213) {
+    if (new_message.author.id != 446778406382600213) {
         bot.guilds.find('name', "Duonexir").channels.find('id', "564127370647437342").send(new_message.createdAt+" "+new_message.channel+" "+new_message.author.username+" : "+new_message+"```\nanciennement\n```"+old_message);
     }
-})
+});
 
 bot.login(process.env.TOKEN);
