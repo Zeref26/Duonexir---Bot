@@ -59,8 +59,18 @@ bot.on('message', message => {
         }
             // Pour les sans fiches
         if (member.roles.exists('name', "Sans fiche")) {
-            if (command == "") {
-
+            if (command == "race") {
+                message.delete();
+                switch (args[1].toLowerCase()) {
+                    case "humain" : bot.channels.find('id',"585506340093296641").send(member.id+" : Humain"); break;
+                    case "nain" : bot.channels.find('id',"585506340093296641").send(member.id+" : Nain"); break;
+                    case "elfe" : bot.channels.find('id',"585506340093296641").send(member.id+" : Elfe"); break;
+                    case "lié" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); break;
+                    case "liés" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); break;
+                    case "lie" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); break;
+                    case "lies" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); break;
+                    default : message.author.send("Cette race n'existe pas, allez voir les infos pour voir ce qui est disponible.");
+                }
             }
         }
             // Pour les rôlistes
@@ -71,6 +81,7 @@ bot.on('message', message => {
         } 
             // Pour le staff
         if (member.roles.exists('name', "Administrateur") || member.roles.exists('name', "Fondateur")) {
+                // Validation fiche
             if (command == "valide") {
                 message.delete();
                 if (message.mentions.members.size == 1) {
@@ -82,19 +93,41 @@ bot.on('message', message => {
                     message.channel.send("Veuillez mentionner quelqu'un, "+member+".");
                 }
             }
+                // Say
+            if (command == "say") {
+                message.delete();
+                message.channel.send(args.slice(1).join(" "));
+            }
+                // Mettre rôle Animateur
+            if (command == "anim") {
+                message.delete();
+                if (message.mentions.members.size == 1) {
+                    message.mentions.members.first().addRole(serveur.roles.find('name', "Animateur"));
+                } else {
+                    message.channel.send("Veuillez mentionner quelqu'un, "+member+".");
+                }
+            }
+        }
+            // Pour les animateurs
+        if (member.roles.exists('name', "Animateur") || member.roles.exists('name', "Fondateur")) {
+            // Say
+            if (command == "say") {
+                message.delete();
+                message.channel.send(args.slice(1).join(" "));
+            }
         }
     }
 });
 
 bot.on('messageDelete', message => {
     if (message.author.id != 446778406382600213 || message.content.charAt(0) == "-") {
-        bot.guilds.find('name', "Duonexir").channels.find('id', "564127370647437342").send(message.createdAt+" "+message.channel+" "+message.author.username+" : "+message);
+        bot.guilds.find('name', "Duonexir").channels.find('id', "564127370647437342").send(message.createdAt+" ;; "+message.channel.name+" ;; "+message.author.username+" : "+message);
     }
 });
 
 bot.on('messageUpdate', (old_message, new_message) => {
     if (new_message.author.id != 446778406382600213) {
-        bot.guilds.find('name', "Duonexir").channels.find('id', "564127370647437342").send(new_message.createdAt+" "+new_message.channel+" "+new_message.author.username+" : "+new_message+"```\nanciennement\n```"+old_message);
+        bot.guilds.find('name', "Duonexir").channels.find('id', "564127370647437342").send(new_message.createdAt+" ;; "+new_message.channel.name+" ;; "+new_message.author.username+" : "+new_message+"```\nanciennement\n```"+old_message);
     }
 });
 
