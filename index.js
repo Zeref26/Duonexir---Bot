@@ -126,7 +126,7 @@ bot.on('message', message => {
 });
 
 bot.on('messageDelete', message => {
-    if (message.author.id != 446778406382600213 || message.content.charAt(0) == "-") {
+    if (message.author.id != 446778406382600213 && message.content.charAt(0) != "-") {
         bot.guilds.find('name', "Duonexir").channels.find('id', "564127370647437342").send(message.createdAt+" ;; "+message.channel.name+" ;; "+message.author.username+" : "+message);
     }
 });
