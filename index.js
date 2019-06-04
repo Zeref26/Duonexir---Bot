@@ -61,17 +61,21 @@ bot.on('message', message => {
         }
             // Pour les sans fiches
         if (member.roles.exists('name', "Sans fiche")) {
-            if (command == "race" && member.roles.exists('name', "Race")) {
-                message.delete();
-                switch (args[1].toLowerCase()) {
-                    case "humain" : bot.channels.find('id',"585506340093296641").send(member.id+" : Humain"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                    case "nain" : bot.channels.find('id',"585506340093296641").send(member.id+" : Nain"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                    case "elfe" : bot.channels.find('id',"585506340093296641").send(member.id+" : Elfe"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                    case "lié" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                    case "liés" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                    case "lie" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                    case "lies" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                    default : message.author.send("Cette race n'existe pas, allez voir les infos pour voir ce qui est disponible.");
+            message.delete();
+            if (command == "race") {
+                if (member.roles.exists('name', "Race")) {
+                    switch (args[1].toLowerCase()) {
+                        case "humain" : bot.channels.find('id',"585506340093296641").send(member.id+" : Humain"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                        case "nain" : bot.channels.find('id',"585506340093296641").send(member.id+" : Nain"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                        case "elfe" : bot.channels.find('id',"585506340093296641").send(member.id+" : Elfe"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                        case "lié" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                        case "liés" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                        case "lie" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                        case "lies" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                        default : message.author.send("Cette race n'existe pas, allez voir les infos pour voir ce qui est disponible.");
+                    }
+                } else {
+                    message.author.send("Vous avez déjà choisi une race.");
                 }
             }
         }
