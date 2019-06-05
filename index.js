@@ -75,7 +75,27 @@ bot.on('message', message => {
                         default : message.author.send("Cette race n'existe pas, allez voir les infos pour voir ce qui est disponible.");
                     }
                 } else {
-                    message.author.send("Vous avez déjà choisi une race.");
+                    message.author.send("Vous avez déjà choisi une race. Pour modifier, demandez au staff avec -report [text]");
+                }
+            }
+            if (command == "job") {
+                if (member.roles.exists('name', "Job")) {
+                    switch (args[1].toLowerCase()) {
+                        case "alchimiste" : bot.channels.find('id',"585504415721717771").send(member.id+" : Alchimiste"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
+                        case "assassin" : bot.channels.find('id',"585504415721717771").send(member.id+" : Assassin"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
+                        case "érudit" : bot.channels.find('id',"585504415721717771").send(member.id+" : Érudit"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
+                        case "erudit" : bot.channels.find('id',"585504415721717771").send(member.id+" : Érudit"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
+                        case "forgeron" : bot.channels.find('id',"585504415721717771").send(member.id+" : Forgeron"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
+                        case "herboriste" : bot.channels.find('id',"585504415721717771").send(member.id+" : Herboriste"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
+                        case "mage" : bot.channels.find('id',"585504415721717771").send(member.id+" : Mage"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
+                        case "milicien" : bot.channels.find('id',"585504415721717771").send(member.id+" : Milicien"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
+                        case "paysan" : bot.channels.find('id',"585504415721717771").send(member.id+" : Paysan"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
+                        case "rebelle" : bot.channels.find('id',"585504415721717771").send(member.id+" : Rebelle"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
+                        case "voleur" : bot.channels.find('id',"585504415721717771").send(member.id+" : Voleur"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
+                        default : message.author.send("Ce métier n'existe pas, allez voir les infos pour voir ce qui est disponible.");
+                    }
+                } else {
+                    message.author.send("Vous avez déjà choisi un métier. Pour modifier, demandez au staff avec -report [text]");
                 }
             }
         }
@@ -127,13 +147,13 @@ bot.on('message', message => {
 
 bot.on('messageDelete', message => {
     if (message.author.id != 446778406382600213 && message.content.charAt(0) != "-") {
-        bot.guilds.find('name', "Duonexir").channels.find('id', "564127370647437342").send(message.createdAt+" ;; "+message.channel.name+" ;; "+message.author.username+" : "+message);
+        bot.guilds.find('name', "Duonexir").channels.find('id', "564127370647437342").send(message.createdAt+" ;; "+message.channel+" ;; "+message.author.username+" : "+message);
     }
 });
 
 bot.on('messageUpdate', (old_message, new_message) => {
     if (new_message.author.id != 446778406382600213) {
-        bot.guilds.find('name', "Duonexir").channels.find('id', "564127370647437342").send(new_message.createdAt+" ;; "+new_message.channel.name+" ;; "+new_message.author.username+" : "+new_message+"```\nanciennement\n```"+old_message);
+        bot.guilds.find('name', "Duonexir").channels.find('id', "564127370647437342").send(new_message.createdAt+" ;; "+new_message.channel+" ;; "+new_message.author.username+" : "+new_message+"```\nanciennement\n```"+old_message);
     }
 });
 
