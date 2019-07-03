@@ -236,7 +236,7 @@ bot.on('message', message => {
                                                         }
                                                     }
                                                     msg.edit(message.mentions.members.first().id+" : "+(parseInt(argent)-s));
-                                                    msg2.edit(member.id+" : "+(parseInt(argent)+s));
+                                                    msg2.edit(member.id+" : "+(parseInt(argent2)+s));
                                                     member.send("Vous avez volé "+s+"$.");
                                                     if (Math.floor((Math.random()*10)+1) == 5) {
                                                         member.send("La personne a senti que vous l'avez volé.");
