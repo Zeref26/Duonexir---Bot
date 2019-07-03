@@ -22,6 +22,48 @@ bot.on('guildMemberAdd', member => {
 bot.on('guildMemberRemove', member => {
         //Logs
     bot.channels.find('id',"563472732310732841").send(member+" est parti du serveur. Adieu.");
+    bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
+        messages.forEach((msg) => {
+            if (msg.content.includes(member.id)) {
+                msg.delete();
+            }
+        });
+    });
+    bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages => {
+        messages.forEach((msg) => {
+            if (msg.content.includes(member.id)) {
+                msg.delete();
+            }
+        });
+    });
+    bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages => {
+        messages.forEach((msg) => {
+            if (msg.content.includes(member.id)) {
+                msg.delete();
+            }
+        });
+    });
+    bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages => {
+        messages.forEach((msg) => {
+            if (msg.content.includes(member.id)) {
+                msg.delete();
+            }
+        });
+    });
+    bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
+        messages.forEach((msg) => {
+            if (msg.content.includes(member.id)) {
+                msg.delete();
+            }
+        });
+    });
+    bot.channels.get("563452601669124097").fetchMessages({limit:99}).then(messages => {
+        messages.forEach((msg) => {
+            if (msg.content.includes(member.id)) {
+                msg.delete();
+            }
+        });
+    });
 });
 
 bot.on('message', message => {
@@ -475,6 +517,150 @@ bot.on('message', message => {
                     member.send("Personne ne demande à vous fouiller.");
                 }
             }
+                // Autoriser quelqu'un chez soi
+            if (command == "entre") {
+                if (member.hasPermission("MANAGE_ROLES_OR_PERMISSIONS")) {
+                    if (message.mentions.members.size == 1) {
+                        let p = message.mentions.members.first();
+                        if (p.roles.exists('name', "Rôliste")) {
+                            message.channel.overwritePermissions(p,{
+                                VIEW_CHANNEL: true,
+                                SEND_MESSAGES: true,
+                            });
+                        } else {
+                            member.send("Cette personne n'est pas encore Rôliste.");
+                        }
+                    } else {
+                        member.send("Vous devez mentionner une personne.");
+                    }
+                }
+            }
+            
+                // Sortir quelqu'un de chez soi
+            if (command == "sort") {
+                if (member.hasPermission("MANAGE_ROLES_OR_PERMISSIONS")) {
+                    if (message.mentions.members.size == 1) {
+                        let p = message.mentions.members.first();
+                        if (p.roles.exists('name', "Rôliste")) {
+                            message.channel.overwritePermissions(p,{
+                                VIEW_CHANNEL: false,
+                                SEND_MESSAGES: false,
+                            });
+                        } else {
+                            member.send("Cette personne n'est pas encore Rôliste.");
+                        }
+                    } else {
+                        member.send("Vous devez mentionner une personne.");
+                    }
+                }
+            }
+                // Casino
+            if (command == "casino") {
+                if (message.channel.name == "casino") {
+                    if (args.length > 2) {
+                        if (parseInt(args[1]) > 0 && parseInt(args[1]) < 7) {
+                            if (parseInt(args[2]) > 0) {
+                                let total = 0;
+                                let de1 = Math.floor((Math.random()*6)+1);
+                                let de2 = Math.floor((Math.random()*6)+1);
+                                let de3 = Math.floor((Math.random()*6)+1);
+                                if (de1 == parseInt(args[1])) {
+                                    total += 1;
+                                }
+                                if (de2 == parseInt(args[1])) {
+                                    total += 1;
+                                }
+                                if (de3 == parseInt(args[1])) {
+                                    total += 1;
+                                }
+                                switch (total) {
+                                    case 1 : bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
+                                            messages.forEach((msg) => {
+                                                let argent = "";
+                                                if (msg.content.includes(member.id)) {
+                                                    for (var i = 0; i < msg.content.length; i++){
+                                                        if (msg.content.charAt(i) == ":"){
+                                                            for (var j = i+2 ; j < msg.content.length; j++){
+                                                                argent += msg.content.charAt(j);
+                                                            }
+                                                        }
+                                                    }
+                                                    msg.edit(member.id+" : "+(parseInt(argent)+(parseInt(args[2]))));
+                                                }
+                                            });
+                                        });
+                                        message.channel.send("Un dé correspond à votre chiffre, vous remportez 2x votre mise."); break;
+                                    case 2 : bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
+                                        messages.forEach((msg) => {
+                                            let argent = "";
+                                            if (msg.content.includes(member.id)) {
+                                                for (var i = 0; i < msg.content.length; i++){
+                                                    if (msg.content.charAt(i) == ":"){
+                                                        for (var j = i+2 ; j < msg.content.length; j++){
+                                                            argent += msg.content.charAt(j);
+                                                        }
+                                                    }
+                                                }
+                                                msg.edit(member.id+" : "+(parseInt(argent)+(parseInt(args[2])*2)));
+                                            }
+                                        });
+                                    });
+                                    message.channel.send("Deux dés correspondent à votre chiffre, vous remportez 3x votre mise !"); break;
+                                    case 3 : bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
+                                        messages.forEach((msg) => {
+                                            let argent = "";
+                                            if (msg.content.includes(member.id)) {
+                                                for (var i = 0; i < msg.content.length; i++){
+                                                    if (msg.content.charAt(i) == ":"){
+                                                        for (var j = i+2 ; j < msg.content.length; j++){
+                                                            argent += msg.content.charAt(j);
+                                                        }
+                                                    }
+                                                }
+                                                msg.edit(member.id+" : "+(parseInt(argent)+(parseInt(args[2])*5)));
+                                            }
+                                        });
+                                    });
+                                    message.channel.send("Tous les dés correspondent à votre chiffre, vous remportez 6x votre mise !"); break;
+                                    default : bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
+                                                messages.forEach((msg) => {
+                                                    let gain = "";
+                                                    for (var i = 0; i < msg.content.length; i++){
+                                                        gain += msg.content.charAt(i+2);
+                                                    }
+                                                    msg.edit(""+(parseInt(gain)+parseInt(args[2])));
+                                                });
+                                            });
+                                            bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
+                                                messages.forEach((msg) => {
+                                                    let argent = "";
+                                                    if (msg.content.includes(member.id)) {
+                                                        for (var i = 0; i < msg.content.length; i++){
+                                                            if (msg.content.charAt(i) == ":"){
+                                                                for (var j = i+2 ; j < msg.content.length; j++){
+                                                                    argent += msg.content.charAt(j);
+                                                                }
+                                                            }
+                                                        }
+                                                        msg.edit(member.id+" : "+(parseInt(argent)-parseInt(args[2])));
+                                                    }
+                                                });
+                                            });
+                                            message.channel.send("Aucun dé ne correspond à votre chiffre. Vous perdez votre mise.");
+                                }
+                            } else {
+                                member.send("Veuillez entrer une mise positive, "+member+".");
+                            }
+                        } else {
+                            member.send("Un dé ne peut faire qu'entre 1 et 6, veuillez entrer un nombre entre 1 et 6");
+                        }
+                    } else {
+                        member.send("-casino [prévision 1-6] [mise]");
+                    }
+                } else {
+                    member.send("Vous n'êtes pas au casino.");
+                }
+            }
                 // Pour les jobs
             let job = "";
             bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
@@ -597,6 +783,135 @@ bot.on('message', message => {
                 }
             }
         }
+            // Pour le roi
+        if (member.roles.exists('name', "Roi") || member.roles.exists('name', "Reine")) {
+                // Exécution
+            if (command == "ex") {
+                message.delete();
+                if (message.mentions.members.size == 1) {
+                    let c = message.mentions.members.first();
+                    if (member.roles.exists('name', "Zadec")) {
+                        if (c.roles.exists('name', "Condamné")) {
+                            bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
+                                messages.forEach((msg) => {
+                                    if (msg.content.includes(c.id)) {
+                                        msg.delete();
+                                    }
+                                });
+                            });
+                            bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages => {
+                                messages.forEach((msg) => {
+                                    if (msg.content.includes(c.id)) {
+                                        msg.delete();
+                                    }
+                                });
+                            });
+                            bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages => {
+                                messages.forEach((msg) => {
+                                    if (msg.content.includes(c.id)) {
+                                        msg.delete();
+                                    }
+                                });
+                            });
+                            bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages => {
+                                messages.forEach((msg) => {
+                                    if (msg.content.includes(c.id)) {
+                                        msg.delete();
+                                    }
+                                });
+                            });
+                            bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
+                                messages.forEach((msg) => {
+                                    if (msg.content.includes(c.id)) {
+                                        msg.delete();
+                                    }
+                                });
+                            });
+                            bot.channels.get("563452601669124097").fetchMessages({limit:99}).then(messages => {
+                                messages.forEach((msg) => {
+                                    if (msg.content.includes(c.id)) {
+                                        msg.delete();
+                                    }
+                                });
+                            });
+                            bot.channels.get("595996634769391646").send("La tête de "+c.displayName+" vient de tomber...");
+                            member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Sans fiche"));
+                            member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race"));
+                            member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job"));
+                            member.removeRole(c.roles.find('name',"Condamné"));
+                            member.removeRole(c.roles.find('name',"Prison"));
+                            member.removeRole(c.roles.find('name',"Rôliste"));
+                            member.removeRole(c.roles.find('hexColor',"#8b481a"));
+                            member.removeRole(c.roles.find('hexColor',"#a218a5"));
+                            member.setNickname("");
+                        } else {
+                            member.send("Cette personne n'a pas été condamné à mort.");
+                        }
+                    } else {
+                        member.send("Vous n'êtes pas à Zadec.");
+                    }
+                } else {
+                    member.send("Veuillez mentionner quelqu'un, "+member+".");
+                }
+            }
+                // Condamnation
+            if (command == "condamne") {
+                message.delete();
+                if (message.mentions.members.size == 1) {
+                    let c = message.mentions.members.first();
+                    if (member.roles.exists('name', "Visiteur")) {
+                        if (c.roles.exists('name', "Prison")) {
+                            c.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Condamné"));
+                            c.send("Le roi vous a condamné à mort. Vous serez exécuté en public à la guillotine prochainement.");
+                        } else {
+                            member.send("Cette personne n'est pas un prisonnier.");
+                        }
+                    } else {
+                        member.send("Vous n'êtes pas à la prison.");
+                    }
+                } else {
+                    member.send("Veuillez mentionner quelqu'un, "+member+".");
+                }
+            }
+                // Gain casino
+            if (command == "recup") {
+                message.delete();
+                if (message.channel.name == "casino") {
+                    bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
+                        messages.forEach((msg) => {
+                            let gain = "";
+                            for (var i = 0; i < msg.content.length; i++){
+                                gain += msg.content.charAt(i+2);
+                            }
+                            bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
+                                messages2.forEach((msg2) => {
+                                    let argent2 = "";
+                                    if (msg2.content.includes(member.id)) {
+                                        for (var i = 0; i < msg2.content.length; i++){
+                                            if (msg2.content.charAt(i) == ":"){
+                                                for (var j = i+2 ; j < msg2.content.length; j++){
+                                                    argent2 += msg2.content.charAt(j);
+                                                }
+                                            }
+                                        }
+                                        msg2.edit(member.id+" : "+(parseInt(argent)+parseInt(gain)));
+                                        msg.edit("0");
+                                        if (member.roles.exists('name', "Roi")) {
+                                            message.channel.send("Le roi a récupéré l'argent générée par le casino.");
+                                        } else {
+                                            message.channel.send("La reine a récupéré l'argent générée par le casino.");
+                                        }
+                                        member.send("Dans la caisse, il y avait "+gain+"$.");
+                                    }
+                                });
+                            });
+                        });
+                    });
+                } else {
+                    member.send("Vous n'êtes pas au casino.");
+                }
+            }
+        }
             // Pour le staff
         if (member.roles.exists('name', "Administrateur") || member.roles.exists('name', "Fondateur")) {
                 // Validation fiche
@@ -612,11 +927,12 @@ bot.on('message', message => {
                         bot.channels.find('id',"564400698767310864").send(message.mentions.members.first().id+" : 250");
                         bot.channels.find('id',"595582435345956885").send(message.mentions.members.first().id+" : 0");
                         bot.channels.find('id',"596004025967575053").send(message.mentions.members.first().id+" : 0");
+                        bot.channels.find('id',"596119770605158430").send(member+" a validé la fiche de "+message.mentions.members.first());
                     } else {
                         message.author.send("Impossible. Cette personne n'a pas le rôle Sans fiche.");
                     }
                 } else {
-                    message.channel.send("Veuillez mentionner quelqu'un, "+member+".");
+                    member.send("Veuillez mentionner quelqu'un, "+member+".");
                 }
             }
                 // Say
@@ -642,6 +958,7 @@ bot.on('message', message => {
                                         }
                                     }
                                     msg2.edit(rec.id+" : "+(parseInt(argent2)+parseInt(args[2])));
+                                    bot.channels.find('id',"596119770605158430").send(member+" a give "+args[2]+"$ à "+message.mentions.members.first());
                                 }
                             });
                         });
@@ -657,6 +974,7 @@ bot.on('message', message => {
                 message.delete();
                 if (message.mentions.members.size == 1) {
                     message.mentions.members.first().addRole(serveur.roles.find('name', "Animateur"));
+                    bot.channels.find('id',"596119770605158430").send(member+" a rendu animateur "+message.mentions.members.first());
                 } else {
                     message.author.send("Veuillez mentionner quelqu'un, "+member+".");
                 }
@@ -679,6 +997,7 @@ bot.on('message', message => {
                                             warn += msg.content.charAt(i+2);
                                         }
                                     }
+                                    bot.channels.find('id',"596119770605158430").send(member+" a averti "+message.mentions.members.first()+" pour "+reason);
                                     if (parseInt(warn)+1 < 3) {
                                         msg.edit(message.mentions.members.first().id+" : "+(parseInt(warn)+1));
                                         message.mentions.members.first().send("Vous avez été averti pour la raison : "+reason+".");
@@ -699,7 +1018,48 @@ bot.on('message', message => {
                                         },1000*60*60*24*7);
                                     } else {
                                         message.mentions.members.first().send("Vous avez été kick automatiquement suite à 3 avertissements rapprochés.");
-                                        msg.delete();
+                                        bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
+                                            messages.forEach((msg) => {
+                                                if (msg.content.includes(message.mentions.members.first().id)) {
+                                                    msg.delete();
+                                                }
+                                            });
+                                        });
+                                        bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages => {
+                                            messages.forEach((msg) => {
+                                                if (msg.content.includes(message.mentions.members.first().id)) {
+                                                    msg.delete();
+                                                }
+                                            });
+                                        });
+                                        bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages => {
+                                            messages.forEach((msg) => {
+                                                if (msg.content.includes(message.mentions.members.first().id)) {
+                                                    msg.delete();
+                                                }
+                                            });
+                                        });
+                                        bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages => {
+                                            messages.forEach((msg) => {
+                                                if (msg.content.includes(message.mentions.members.first().id)) {
+                                                    msg.delete();
+                                                }
+                                            });
+                                        });
+                                        bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
+                                            messages.forEach((msg) => {
+                                                if (msg.content.includes(message.mentions.members.first().id)) {
+                                                    msg.delete();
+                                                }
+                                            });
+                                        });
+                                        bot.channels.get("563452601669124097").fetchMessages({limit:99}).then(messages => {
+                                            messages.forEach((msg) => {
+                                                if (msg.content.includes(message.mentions.members.first().id)) {
+                                                    msg.delete();
+                                                }
+                                            });
+                                        });
                                         message.mentions.members.first().kick();
                                     }
                                 }
@@ -716,6 +1076,7 @@ bot.on('message', message => {
                                                         }
                                                     }
                                                     msg.edit(message.mentions.members.first().id+" : "+(parseInt(warn)-1));
+                                                    bot.channels.find('id',"596119770605158430").send(member+" a averti "+message.mentions.members.first()+" pour "+reason);
                                                 }
                                             });
                                         });
@@ -732,7 +1093,7 @@ bot.on('message', message => {
             }
         }
             // Pour les animateurs
-        if (member.roles.exists('name', "Animateur") || member.roles.exists('name', "Fondateur")) {
+        if (member.roles.exists('name', "Animateur")) {
             // Say
             if (command == "say") {
                 message.delete();
