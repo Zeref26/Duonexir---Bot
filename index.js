@@ -109,10 +109,6 @@ bot.on('message', message => {
         }
             // Pour les rôlistes
         if (member.roles.exists('name', "Rôliste")) {
-                // Commencer
-            if (command == "start" && !member.roles.exists('hexColor', "#8b481a")) {
-
-            }
                 // Donner de l'argent
             if (command == "pay") {
                 message.delete();
@@ -316,6 +312,7 @@ bot.on('message', message => {
                 if (message.mentions.members.size == 1) {
                     if (message.mentions.members.first().roles.exists('name', "Sans fiche")) {
                         message.mentions.members.first().addRole(serveur.roles.find('name', "Rôliste"));
+                        message.mentions.members.first().addRole(serveur.roles.find('name', "Zadec"));
                         message.mentions.members.first().removeRole(serveur.roles.find('name', "Sans fiche"));
                         message.mentions.members.first().send("Votre fiche vient d'être validée, vous pouvais désormais participer au RP.");
                         serveur.channels.find('id', "563475707632812032").send("La fiche de "+message.mentions.members.first().displayName+" est validée. Bienvenue dans le RP.");
