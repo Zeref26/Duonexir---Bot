@@ -67,13 +67,13 @@ bot.on('message', message => {
                 if (member.roles.exists('name', "Race")) {
                     if (args.length>1) {
                         switch (args[1].toLowerCase()) {
-                            case "humain" : member.addRole(bot.guilds.find('name', "Humain")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                            case "nain" : member.addRole(bot.guilds.find('name', "Nain")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                            case "elfe" : member.addRole(bot.guilds.find('name', "Elfe")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                            case "lié" : member.addRole(bot.guilds.find('name', "Lié")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                            case "liés" : member.addRole(bot.guilds.find('name', "Lié")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                            case "lie" : member.addRole(bot.guilds.find('name', "Lié")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                            case "lies" : member.addRole(bot.guilds.find('name', "Lié")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                            case "humain" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Humain")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                            case "nain" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Nain")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                            case "elfe" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Elfe")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                            case "lié" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Lié")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                            case "liés" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Lié")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                            case "lie" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Lié")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                            case "lies" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Lié")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
                             default : message.author.send("Cette race n'existe pas, allez voir les infos pour voir ce qui est disponible.");
                         }
                     } else {
