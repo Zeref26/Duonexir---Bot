@@ -67,13 +67,13 @@ bot.on('message', message => {
                 if (member.roles.exists('name', "Race")) {
                     if (args.length>1) {
                         switch (args[1].toLowerCase()) {
-                            case "humain" : bot.channels.find('id',"585506340093296641").send(member.id+" : Humain"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                            case "nain" : bot.channels.find('id',"585506340093296641").send(member.id+" : Nain"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                            case "elfe" : bot.channels.find('id',"585506340093296641").send(member.id+" : Elfe"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                            case "lié" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                            case "liés" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                            case "lie" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
-                            case "lies" : bot.channels.find('id',"585506340093296641").send(member.id+" : Lié"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                            case "humain" : member.removeRole(bot.guilds.find('name', "Humain")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                            case "nain" : member.removeRole(bot.guilds.find('name', "Nain")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                            case "elfe" : member.removeRole(bot.guilds.find('name', "Elfe")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                            case "lié" : member.removeRole(bot.guilds.find('name', "Lié")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                            case "liés" : member.removeRole(bot.guilds.find('name', "Lié")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                            case "lie" : member.removeRole(bot.guilds.find('name', "Lié")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
+                            case "lies" : member.removeRole(bot.guilds.find('name', "Lié")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race")); break;
                             default : message.author.send("Cette race n'existe pas, allez voir les infos pour voir ce qui est disponible.");
                         }
                     } else {
@@ -89,7 +89,6 @@ bot.on('message', message => {
                     if (args.length>1) {
                         switch (args[1].toLowerCase()) {
                             case "alchimiste" : bot.channels.find('id',"585504415721717771").send(member.id+" : Alchimiste"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
-                            case "assassin" : bot.channels.find('id',"585504415721717771").send(member.id+" : Assassin"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
                             case "érudit" : bot.channels.find('id',"585504415721717771").send(member.id+" : Erudit"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
                             case "erudit" : bot.channels.find('id',"585504415721717771").send(member.id+" : Erudit"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
                             case "forgeron" : bot.channels.find('id',"585504415721717771").send(member.id+" : Forgeron"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
@@ -99,7 +98,6 @@ bot.on('message', message => {
                             case "mineur" : bot.channels.find('id',"585504415721717771").send(member.id+" : Mineur"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
                             case "paysan" : bot.channels.find('id',"585504415721717771").send(member.id+" : Paysan"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
                             case "rebelle" : bot.channels.find('id',"585504415721717771").send(member.id+" : Rebelle"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
-                            case "voleur" : bot.channels.find('id',"585504415721717771").send(member.id+" : Voleur"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
                             default : message.author.send("Ce métier n'existe pas, allez voir les infos pour voir ce qui est disponible.");
                         }
                     } else {
@@ -201,6 +199,86 @@ bot.on('message', message => {
                     member.send("Veuillez mentionner quelqu'un, "+member+".");
                 }
             }
+                // Vol de thune
+            if (command == "rob") {
+                if (message.mentions.members.first().roles.exists('name', "Rôliste")) {
+                    if (member.roles.exists('hexColor', "#8b481a") && message.mentions.members.first().roles.exists('hexColor', "#8b481a")) {
+                        if (member.roles.find('hexColor', "#8b481a").name == message.mentions.members.first().roles.find('hexColor', "#8b481a").name) {
+                            let pctage = Math.floor((Math.random()*20)+10);
+                            bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
+                                messages.forEach((msg) => {
+                                    let argent = "";
+                                    if (msg.content.includes(message.mentions.members.first().id)) {
+                                        for (var i = 0; i < msg.content.length; i++){
+                                            if (msg.content.charAt(i) == ":"){
+                                                for (var j = i+2 ; j < msg.content.length; j++){
+                                                    argent += msg.content.charAt(j);
+                                                }
+                                            }
+                                        }
+                                        let s = Math.floor(parseInt(argent)*pctage/100);
+                                        bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
+                                            messages2.forEach((msg2) => {
+                                                let argent2 = "";
+                                                if (msg2.content.includes(member.id)) {
+                                                    for (var i = 0; i < msg2.content.length; i++){
+                                                        if (msg2.content.charAt(i) == ":"){
+                                                            for (var j = i+2 ; j < msg2.content.length; j++){
+                                                                argent2 += msg2.content.charAt(j);
+                                                            }
+                                                        }
+                                                    }
+                                                    msg.edit(message.mentions.members.first().id+" : "+(parseInt(argent)-s));
+                                                    msg2.edit(member.id+" : "+(parseInt(argent)+s));
+                                                    member.send("Vous avez volé "+s+"$.");
+                                                    if (Math.floor((Math.random()*10)+1) == 5) {
+                                                        member.send("La personne a senti que vous l'avez volé.");
+                                                        message.mentions.members.first().send("Quelqu'un a fouillé vos poches.");
+                                                    }
+                                                    bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages3 => {
+                                                        messages3.forEach((msg3) => {
+                                                            let crime = "";
+                                                            if (msg3.content.includes(member.id)) {
+                                                                for (var i = 0; i < msg3.content.length; i++){
+                                                                    if (msg3.content.charAt(i) == ":"){
+                                                                        for (var j = i+2 ; j < msg3.content.length; j++){
+                                                                            crime += msg3.content.charAt(j);
+                                                                        }
+                                                                    }
+                                                                }
+                                                                msg3.edit(member.id+" : "+(parseInt(crime)+1));
+                                                                setTimeout(function() {
+                                                                    bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages4 => {
+                                                                        messages4.forEach((msg4) => {
+                                                                            let warn = "";
+                                                                            if (msg4.content.includes(member.id)) {
+                                                                                for (var i = 0; i < msg4.content.length; i++){
+                                                                                    if (msg4.content.charAt(i) == ":"){
+                                                                                        warn += msg4.content.charAt(i+2);
+                                                                                    }
+                                                                                }
+                                                                                msg4.edit(member.id+" : "+(parseInt(warn)-1));
+                                                                            }
+                                                                        });
+                                                                    });
+                                                                },1000*60*60*24);
+                                                            }
+                                                        });
+                                                    });
+                                                }
+                                            });
+                                        });
+                                    }
+                                });
+                            });
+                        }
+                    } else {
+                        member.send("L'un de vous n'est pas dans un lieu.");
+                    }
+                } else {
+                    member.send("Veuillez mentionner une personne.");
+                }
+            }
                 // Pour les jobs
             let job = "";
             bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
@@ -216,131 +294,13 @@ bot.on('message', message => {
                     }
                 });
             });
-                // Alchimiste
-            if (job == "Alchimiste") {
-
-            }
-                // Assassin
-            if (job == "Assassin") {
-                
-            }
-                // Erudit
-            if (job == "Erudit") {
-                
-            }
-                // Forgeron
-            if (job == "Forgeron") {
-                
-            }
-                // Herboriste
-            if (job == "Herboriste") {
-
-            }
-                // Mage
-            if (job == "Mage") {
-                
-            }
                 // Milicien
             if (job == "Milicien") {
                 if (command == "control") {
 
                 }
             }
-                // Mineur
-            if (job == "Mineur") {
-                
-            }
-                // Paysan
-            if (job == "Paysan") {
-                
-            }
-                // Rebelle
-            if (job == "Rebelle") {
-                
-            }
-                // Voleur
-            if (job == "Voleur") {
-                if (command == "rob") {
-                    if (message.mentions.members.first().roles.exists('name', "Rôliste")) {
-                        if (member.roles.exists('hexColor', "#8b481a") && message.mentions.members.first().roles.exists('hexColor', "#8b481a")) {
-                            if (member.roles.find('hexColor', "#8b481a").name == message.mentions.members.first().roles.find('hexColor', "#8b481a").name) {
-                                let pctage = Math.floor((Math.random()*20)+10);
-                                bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
-                                    messages.forEach((msg) => {
-                                        let argent = "";
-                                        if (msg.content.includes(message.mentions.members.first().id)) {
-                                            for (var i = 0; i < msg.content.length; i++){
-                                                if (msg.content.charAt(i) == ":"){
-                                                    for (var j = i+2 ; j < msg.content.length; j++){
-                                                        argent += msg.content.charAt(j);
-                                                    }
-                                                }
-                                            }
-                                            let s = Math.floor(parseInt(argent)*pctage/100);
-                                            bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
-                                                messages2.forEach((msg2) => {
-                                                    let argent2 = "";
-                                                    if (msg2.content.includes(member.id)) {
-                                                        for (var i = 0; i < msg2.content.length; i++){
-                                                            if (msg2.content.charAt(i) == ":"){
-                                                                for (var j = i+2 ; j < msg2.content.length; j++){
-                                                                    argent2 += msg2.content.charAt(j);
-                                                                }
-                                                            }
-                                                        }
-                                                        msg.edit(message.mentions.members.first().id+" : "+(parseInt(argent)-s));
-                                                        msg2.edit(member.id+" : "+(parseInt(argent)+s));
-                                                        member.send("Vous avez volé "+s+"$.");
-                                                        if (Math.floor((Math.random()*10)+1) == 5) {
-                                                            member.send("La personne a senti que vous l'avez volé.");
-                                                            message.mentions.members.first().send("Quelqu'un a fouillé vos poches.");
-                                                        }
-                                                        bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages3 => {
-                                                            messages3.forEach((msg3) => {
-                                                                let crime = "";
-                                                                if (msg3.content.includes(member.id)) {
-                                                                    for (var i = 0; i < msg3.content.length; i++){
-                                                                        if (msg3.content.charAt(i) == ":"){
-                                                                            for (var j = i+2 ; j < msg3.content.length; j++){
-                                                                                crime += msg3.content.charAt(j);
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                    msg3.edit(member.id+" : "+(parseInt(crime)+1));
-                                                                    setTimeout(function() {
-                                                                        bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages4 => {
-                                                                            messages4.forEach((msg4) => {
-                                                                                let warn = "";
-                                                                                if (msg4.content.includes(member.id)) {
-                                                                                    for (var i = 0; i < msg4.content.length; i++){
-                                                                                        if (msg4.content.charAt(i) == ":"){
-                                                                                            warn += msg4.content.charAt(i+2);
-                                                                                        }
-                                                                                    }
-                                                                                    msg4.edit(member.id+" : "+(parseInt(warn)-1));
-                                                                                }
-                                                                            });
-                                                                        });
-                                                                    },1000*60*60*24);
-                                                                }
-                                                            });
-                                                        });
-                                                    }
-                                                });
-                                            });
-                                        }
-                                    });
-                                });
-                            }
-                        } else {
-                            member.send("L'un de vous n'est pas dans un lieu.");
-                        }
-                    } else {
-                        member.send("Veuillez mentionner une personne.");
-                    }
-                }
-            }
-        } 
+        }
             // Pour le staff
         if (member.roles.exists('name', "Administrateur") || member.roles.exists('name', "Fondateur")) {
                 // Validation fiche
