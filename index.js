@@ -630,25 +630,21 @@ bot.on('message', message => {
                 if (message.mentions.members.size == 1) {
                     let rec = message.mentions.members.first();
                     if (args.length>2) {
-                        if (parseInt(args[2]) > 0) {
-                            bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
-                                messages2.forEach((msg2) => {
-                                    let argent2 = "";
-                                    if (msg2.content.includes(rec.id)) {
-                                        for (var i = 0; i < msg2.content.length; i++){
-                                            if (msg2.content.charAt(i) == ":"){
-                                                for (var j = i+2 ; j < msg2.content.length; j++){
-                                                    argent2 += msg2.content.charAt(j);
-                                                }
+                        bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
+                            messages2.forEach((msg2) => {
+                                let argent2 = "";
+                                if (msg2.content.includes(rec.id)) {
+                                    for (var i = 0; i < msg2.content.length; i++){
+                                        if (msg2.content.charAt(i) == ":"){
+                                            for (var j = i+2 ; j < msg2.content.length; j++){
+                                                argent2 += msg2.content.charAt(j);
                                             }
                                         }
-                                        msg2.edit(rec.id+" : "+(parseInt(argent2)+parseInt(args[2])));
                                     }
-                                });
+                                    msg2.edit(rec.id+" : "+(parseInt(argent2)+parseInt(args[2])));
+                                }
                             });
-                        } else {
-                            member.send("Veuillez entrer un montant positif, "+member+".");
-                        }
+                        });
                     } else {
                         member.send("Veuillez mettre le montant dans la commande, "+member+".");
                     }
