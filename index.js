@@ -115,47 +115,51 @@ bot.on('message', message => {
                 if (message.mentions.members.size == 1) {
                     let rec = message.mentions.members.first();
                     if (rec.roles.exists('name', "Rôliste")) {
-                        if (args.length>2) {
-                            if (parseInt(args[2]) > 0) {
-                                bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
-                                    messages.forEach((msg) => {
-                                        let argent = "";
-                                        if (msg.content.includes(member.id)) {
-                                            for (var i = 0; i < msg.content.length; i++){
-                                                if (msg.content.charAt(i) == ":"){
-                                                    for (var j = i+2 ; j < msg.content.length; j++){
-                                                        argent += msg.content.charAt(j);
+                        if(member.roles.find('hexColor', "#8b481a").name == message.mentions.members.first().roles.find('hexColor', "#8b481a").name) {
+                            if (args.length>2) {
+                                if (parseInt(args[2]) > 0) {
+                                    bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
+                                        messages.forEach((msg) => {
+                                            let argent = "";
+                                            if (msg.content.includes(member.id)) {
+                                                for (var i = 0; i < msg.content.length; i++){
+                                                    if (msg.content.charAt(i) == ":"){
+                                                        for (var j = i+2 ; j < msg.content.length; j++){
+                                                            argent += msg.content.charAt(j);
+                                                        }
                                                     }
                                                 }
-                                            }
-                                            if (parseInt(argent) >= args[2]) {
-                                                bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
-                                                    messages2.forEach((msg2) => {
-                                                        let argent2 = "";
-                                                        if (msg2.content.includes(rec.id)) {
-                                                            for (var i = 0; i < msg2.content.length; i++){
-                                                                if (msg2.content.charAt(i) == ":"){
-                                                                    for (var j = i+2 ; j < msg2.content.length; j++){
-                                                                        argent2 += msg2.content.charAt(j);
+                                                if (parseInt(argent) >= args[2]) {
+                                                    bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
+                                                        messages2.forEach((msg2) => {
+                                                            let argent2 = "";
+                                                            if (msg2.content.includes(rec.id)) {
+                                                                for (var i = 0; i < msg2.content.length; i++){
+                                                                    if (msg2.content.charAt(i) == ":"){
+                                                                        for (var j = i+2 ; j < msg2.content.length; j++){
+                                                                            argent2 += msg2.content.charAt(j);
+                                                                        }
                                                                     }
                                                                 }
+                                                                msg.edit(member.id+" : "+(parseInt(argent)-parseInt(args[2])));
+                                                                msg2.edit(rec.id+" : "+(parseInt(argent2)+parseInt(args[2])));
                                                             }
-                                                            msg.edit(member.id+" : "+(parseInt(argent)-parseInt(args[2])));
-                                                            msg2.edit(rec.id+" : "+(parseInt(argent2)+parseInt(args[2])));
-                                                        }
+                                                        });
                                                     });
-                                                });
-                                            } else {
-                                                member.send("Vous n'avez pas assez d'argent, "+member+" ! ");
+                                                } else {
+                                                    member.send("Vous n'avez pas assez d'argent, "+member+" ! ");
+                                                }
                                             }
-                                        }
+                                        });
                                     });
-                                });
+                                } else {
+                                    member.send("Veuillez entrer un montant positif, "+member+".");
+                                }
                             } else {
-                                member.send("Veuillez entrer un montant positif, "+member+".");
+                                member.send("Veuillez mettre le montant dans la commande, "+member+".");
                             }
                         } else {
-                            member.send("Veuillez mettre le montant dans la commande, "+member+".");
+                            member.send("Vous n'êtes pas au même endroit.");
                         }
                     } else {
                         member.send("Ce membre n'est pas encore Rôliste, "+member+".");
@@ -189,11 +193,15 @@ bot.on('message', message => {
                 if (message.mentions.members.size == 1) {
                     let rec = message.mentions.members.first();
                     if (rec.roles.exists('name', "Rôliste")) {
-                        if (args.length>2) {
-                            rec.send(member.displayName+" vous chuchotte : "+args.slice(2).join(" "));
-                            message.channel.send(member.displayName+" murmure quelque chose à "+rec.displayName);
+                        if(member.roles.find('hexColor', "#8b481a").name == message.mentions.members.first().roles.find('hexColor', "#8b481a").name) {
+                            if (args.length>2) {
+                                rec.send(member.displayName+" vous chuchotte : "+args.slice(2).join(" "));
+                                message.channel.send(member.displayName+" murmure quelque chose à "+rec.displayName);
+                            } else {
+                                member.send("Entrez du texte dans la commande, "+member+".");
+                            }
                         } else {
-                            member.send("Entrez du texte dans la commande, "+member+".");
+                            member.send("Vous n'êtes pas au même endroit.");
                         }
                     } else {
                         member.send("Ce membre n'est pas encore Rôliste, "+member+".");
@@ -274,6 +282,8 @@ bot.on('message', message => {
                                     }
                                 });
                             });
+                        } else {
+                            member.send("Vous n'êtes pas au même endroit.");
                         }
                     } else {
                         member.send("L'un de vous n'est pas dans un lieu.");
