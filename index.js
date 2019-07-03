@@ -97,7 +97,6 @@ bot.on('message', message => {
                             case "milicien" : bot.channels.find('id',"585504415721717771").send(member.id+" : Milicien"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
                             case "mineur" : bot.channels.find('id',"585504415721717771").send(member.id+" : Mineur"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
                             case "paysan" : bot.channels.find('id',"585504415721717771").send(member.id+" : Paysan"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
-                            case "rebelle" : bot.channels.find('id',"585504415721717771").send(member.id+" : Rebelle"); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
                             default : message.author.send("Ce métier n'existe pas, allez voir les infos pour voir ce qui est disponible.");
                         }
                     } else {
@@ -110,6 +109,10 @@ bot.on('message', message => {
         }
             // Pour les rôlistes
         if (member.roles.exists('name', "Rôliste")) {
+                // Commencer
+            if (command == "start" && !member.roles.exists('hexColor', "#8b481a")) {
+
+            }
                 // Donner de l'argent
             if (command == "pay") {
                 message.delete();
@@ -117,40 +120,44 @@ bot.on('message', message => {
                     let rec = message.mentions.members.first();
                     if (rec.roles.exists('name', "Rôliste")) {
                         if (args.length>2) {
-                            bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
-                                messages.forEach((msg) => {
-                                    let argent = "";
-                                    if (msg.content.includes(member.id)) {
-                                        for (var i = 0; i < msg.content.length; i++){
-                                            if (msg.content.charAt(i) == ":"){
-                                                for (var j = i+2 ; j < msg.content.length; j++){
-                                                    argent += msg.content.charAt(j);
+                            if (parseInt(args[2]) > 0) {
+                                bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
+                                    messages.forEach((msg) => {
+                                        let argent = "";
+                                        if (msg.content.includes(member.id)) {
+                                            for (var i = 0; i < msg.content.length; i++){
+                                                if (msg.content.charAt(i) == ":"){
+                                                    for (var j = i+2 ; j < msg.content.length; j++){
+                                                        argent += msg.content.charAt(j);
+                                                    }
                                                 }
                                             }
-                                        }
-                                        if (parseInt(argent) >= args[2]) {
-                                            bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
-                                                messages2.forEach((msg2) => {
-                                                    let argent2 = "";
-                                                    if (msg2.content.includes(rec.id)) {
-                                                        for (var i = 0; i < msg2.content.length; i++){
-                                                            if (msg2.content.charAt(i) == ":"){
-                                                                for (var j = i+2 ; j < msg2.content.length; j++){
-                                                                    argent2 += msg2.content.charAt(j);
+                                            if (parseInt(argent) >= args[2]) {
+                                                bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
+                                                    messages2.forEach((msg2) => {
+                                                        let argent2 = "";
+                                                        if (msg2.content.includes(rec.id)) {
+                                                            for (var i = 0; i < msg2.content.length; i++){
+                                                                if (msg2.content.charAt(i) == ":"){
+                                                                    for (var j = i+2 ; j < msg2.content.length; j++){
+                                                                        argent2 += msg2.content.charAt(j);
+                                                                    }
                                                                 }
                                                             }
+                                                            msg.edit(member.id+" : "+(parseInt(argent)-parseInt(args[2])));
+                                                            msg2.edit(rec.id+" : "+(parseInt(argent2)+parseInt(args[2])));
                                                         }
-                                                        msg.edit(member.id+" : "+(parseInt(argent)-parseInt(args[2])));
-                                                        msg2.edit(rec.id+" : "+(parseInt(argent2)+parseInt(args[2])));
-                                                    }
+                                                    });
                                                 });
-                                            });
-                                        } else {
-                                            member.send("Vous n'avez pas assez d'argent, "+member+" ! ");
+                                            } else {
+                                                member.send("Vous n'avez pas assez d'argent, "+member+" ! ");
+                                            }
                                         }
-                                    }
+                                    });
                                 });
-                            });
+                            } else {
+                                member.send("Veuillez entrer un montant positif, "+member+".");
+                            }
                         } else {
                             member.send("Veuillez mettre le montant dans la commande, "+member+".");
                         }
@@ -312,8 +319,8 @@ bot.on('message', message => {
                         message.mentions.members.first().removeRole(serveur.roles.find('name', "Sans fiche"));
                         message.mentions.members.first().send("Votre fiche vient d'être validée, vous pouvais désormais participer au RP.");
                         serveur.channels.find('id', "563475707632812032").send("La fiche de "+message.mentions.members.first().displayName+" est validée. Bienvenue dans le RP.");
-                        bot.channels.find('id',"564400698767310864").send(member.id+" : 250");
-                        bot.channels.find('id',"595582435345956885").send(member.id+" : 0");
+                        bot.channels.find('id',"564400698767310864").send(message.mentions.members.first().id+" : 250");
+                        bot.channels.find('id',"595582435345956885").send(message.mentions.members.first().id+" : 0");
                     } else {
                         message.author.send("Impossible. Cette personne n'a pas le rôle Sans fiche.");
                     }
