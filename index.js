@@ -580,10 +580,10 @@ bot.on('message', message => {
             }
             if (command == "camp") {
                 message.delete();
-                if (args.length == 1 && message.channel.id == "595638030824636417") {
+                if (args.length == 1 && message.channel.id == "595638047400394782") {
                     message.channel.send("**Alors que vous approchez de l'entrée du camp, un homme s'interpose.**\nGarde : Quel est le code ?");
                     member.send("Utilisez -camp [code] pour donner le code.");
-                } else if (args.length > 1 && message.channel.id == "595638030824636417") {
+                } else if (args.length > 1 && message.channel.id == "595638047400394782") {
                     if (args[1].toLowerCase() == "quit") {
                         if (member.roles.exists('name', "Rebelle")) {
                             member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Rebelle"));
@@ -739,6 +739,7 @@ bot.on('message', message => {
                 // Milicien
             if (member.roles.find('hexColor', "#ac8532").name == "Milicien") {
                 if (command == "control") {
+                    message.delete();
                     if (args[1].toLowerCase() == "ask") {
                         if (message.mentions.members.size == 1) {
                             let acc = message.mentions.members.first();
@@ -757,7 +758,7 @@ bot.on('message', message => {
                             let acc = message.mentions.members.first();
                             acc.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Contrôle"));
                             message.channel.send(member.displayName+" fouille "+acc.displayName+".");
-                            bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
+                            bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages => {
                                 messages.forEach((msg) => {
                                     let crime = "";
                                     if (msg.content.includes(member.id)) {
@@ -780,6 +781,7 @@ bot.on('message', message => {
                     } 
                 }
                 if (command == "arrest") {
+                    message.delete();
                     if (message.mentions.members.size == 1) {
                         if (member.roles.exists('name', "Zadec") && message.mentions.members.first().roles.exists('name', "Zadec")) {
                             message.mentions.members.first().removeRole(message.mentions.members.first().roles.find('name', "Zadec"));
@@ -793,6 +795,7 @@ bot.on('message', message => {
                     }
                 }
                 if (command == "release") {
+                    message.delete();
                     if (message.mentions.members.size == 1) {
                         if (member.roles.exists('name', "Prison") && message.mentions.members.first().roles.exists('name', "Prison")) {
                             message.mentions.members.first().removeRole(message.mentions.members.first().roles.find('name', "Prison"));
@@ -806,6 +809,7 @@ bot.on('message', message => {
                     }
                 }
                 if (command == "visit") {
+                    message.delete();
                     if (message.mentions.members.size == 1) {
                         if (member.roles.exists('name', "Zadec") && message.mentions.members.first().roles.exists('name', "Zadec")) {
                             message.mentions.members.first().addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Visiteur"));
@@ -817,6 +821,7 @@ bot.on('message', message => {
                     }
                 }
                 if (command == "prison") {
+                    message.delete();
                     if (member.roles.exists('name', "Zadec")) {
                         member.removeRole(member.roles.exists('name', "Zadec"));
                         member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Prison"));
