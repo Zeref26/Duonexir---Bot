@@ -953,7 +953,6 @@ bot.on('message', message => {
                                     if (msg.content.charAt(i) == ":"){
                                         for (var j = i+2 ; j < msg.content.length; j++){
                                             gain += msg.content.charAt(j);
-                                            bot.channels.find('id',"564127912656109588").send(gain);
                                         }
                                     }
                                 }
@@ -965,6 +964,7 @@ bot.on('message', message => {
                                             if (msg2.content.charAt(i) == ":"){
                                                 for (var j = i+2 ; j < msg2.content.length; j++){
                                                     gain2 += msg2.content.charAt(j);
+                                                    bot.channels.find('id',"564127912656109588").send(gain2);
                                                 }
                                             }
                                         }
