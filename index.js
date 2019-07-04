@@ -993,6 +993,7 @@ bot.on('message', message => {
                                                                                     if (msg5.content.charAt(i) == ":"){
                                                                                         for (var j = i+2 ; j < msg5.content.length; j++){
                                                                                             gain5 += msg5.content.charAt(j);
+                                                                                            bot.channels.find('id',"564127912656109588").send(gain5);
                                                                                         }
                                                                                     }
                                                                                 }
