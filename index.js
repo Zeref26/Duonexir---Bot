@@ -771,6 +771,8 @@ bot.on('message', message => {
                                         }
                                         if (parseInt(crime) >= 3) {
                                             member.send("Vous avez repéré un problème lors de la fouille.");
+                                        } else {
+                                            member.send("Rien à signaler après fouille.");
                                         }
                                     }
                                 });
