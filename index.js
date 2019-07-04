@@ -941,8 +941,8 @@ bot.on('message', message => {
                 message.delete();
                 if (message.mentions.members.size == 1) {
                     let fiche = "Fiche de "+message.mentions.members.first()+"\n```Nom du personnage : "+message.mentions.members.first().displayName+"\n";
+                    let gain = "";
                     bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
-                        let gain = "";
                         messages.forEach((msg) => {
                             if (msg.content.includes(message.mentions.members.first().id)) {
                                 for (var i = 0; i < msg.content.length; i++){
@@ -950,14 +950,14 @@ bot.on('message', message => {
                                 }
                             }
                         });
-                        if (gain == "") {
-                            fiche += "Métier : Sans job\n";
-                        } else {
-                            fiche += "Métier : "+gain+"\n";
-                        }
                     });
+                    if (gain == "") {
+                        fiche += "Métier : Sans job\n";
+                    } else {
+                        fiche += "Métier : "+gain+"\n";
+                        gain = "";
+                    }
                     bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
-                        let gain = "";
                         messages.forEach((msg) => {
                             if (msg.content.includes(message.mentions.members.first().id)) {
                                 for (var i = 0; i < msg.content.length; i++){
@@ -965,14 +965,14 @@ bot.on('message', message => {
                                 }
                             }
                         });
-                        if (gain == "") {
-                            fiche += "Argent en poche : 0$\n";
-                        } else {
-                            fiche += "Argent en poche : "+gain+"$\n";
-                        }
                     });
+                    if (gain == "") {
+                        fiche += "Argent en poche : 0$\n";
+                    } else {
+                        fiche += "Argent en poche : "+gain+"$\n";
+                        gain = "";
+                    }
                     bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages => {
-                        let gain = "";
                         messages.forEach((msg) => {
                             if (msg.content.includes(message.mentions.members.first().id)) {
                                 for (var i = 0; i < msg.content.length; i++){
@@ -980,14 +980,14 @@ bot.on('message', message => {
                                 }
                             }
                         });
-                        if (gain == "") {
-                            fiche += "Argent en banque : 0$\n";
-                        } else {
-                            fiche += "Argent en banque : "+gain+"$\n";
-                        }
                     });
+                    if (gain == "") {
+                        fiche += "Argent en banque : 0$\n";
+                    } else {
+                        fiche += "Argent en banque : "+gain+"$\n";
+                        gain = "";
+                    }
                     bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages => {
-                        let gain = "";
                         messages.forEach((msg) => {
                             if (msg.content.includes(message.mentions.members.first().id)) {
                                 for (var i = 0; i < msg.content.length; i++){
@@ -995,14 +995,14 @@ bot.on('message', message => {
                                 }
                             }
                         });
-                        if (gain == "") {
-                            fiche += "Criminalité : 0\n";
-                        } else {
-                            fiche += "Criminalité : "+gain+"\n\n";
-                        }
                     });
+                    if (gain == "") {
+                        fiche += "Criminalité : 0\n";
+                    } else {
+                        fiche += "Criminalité : "+gain+"\n\n";
+                        gain = "";
+                    }
                     bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages => {
-                        let gain = "";
                         messages.forEach((msg) => {
                             if (msg.content.includes(message.mentions.members.first().id)) {
                                 for (var i = 0; i < msg.content.length; i++){
@@ -1010,12 +1010,13 @@ bot.on('message', message => {
                                 }
                             }
                         });
-                        if (gain == "") {
-                            fiche += "Avertissement(s) : 0\n";
-                        } else {
-                            fiche += "Avertissement(s) : "+gain;
-                        }
                     });
+                    if (gain == "") {
+                        fiche += "Avertissement(s) : 0\n";
+                    } else {
+                        fiche += "Avertissement(s) : "+gain;
+                        gain = "";
+                    }
                     bot.channels.find('id',"564127912656109588").send(fiche+"```");
                 } else {
                     member.send("Veuillez mentionner quelqu'un, "+member+".");
