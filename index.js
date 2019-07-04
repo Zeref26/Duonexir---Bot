@@ -564,22 +564,6 @@ bot.on('message', message => {
                     member.send("Veuillez mentionner une personne.");
                 }
             }
-                // Contrôles
-            if (command == "control") {
-                if (member.roles.exists('name', "Contrôle ?")) {
-                    if (args.length == 2) {
-                        switch (args[1].toLowerCase()) {
-                            case "yes" : member.removeRole(member.roles.find('name', "Contrôle ?")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Contrôle")); message.channel.send(member.displayName+" a accepté la fouille."); break;
-                            case "no" : member.removeRole(member.roles.find('name', "Contrôle ?")); message.channel.send(member.displayName+" a refusé la fouille."); break;
-                            default : member.send("Veuillez choisir entre ``-control yes`` ou ``-control no``.");
-                        }
-                    } else {
-                        member.send("Veuillez choisir entre ``-control yes`` ou ``-control no``.");
-                    }
-                } else {
-                    member.send("Personne ne demande à vous fouiller.");
-                }
-            }
                 // Autoriser quelqu'un chez soi
             if (command == "entre") {
                 if (member.hasPermission("MANAGE_ROLES_OR_PERMISSIONS")) {
@@ -761,6 +745,22 @@ bot.on('message', message => {
                     }
                 });
             });
+                // Contrôles
+            if (command == "control" && job != "Milicien") {
+                if (member.roles.exists('name', "Contrôle ?")) {
+                    if (args.length == 2) {
+                        switch (args[1].toLowerCase()) {
+                            case "yes" : member.removeRole(member.roles.find('name', "Contrôle ?")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Contrôle")); message.channel.send(member.displayName+" a accepté la fouille."); break;
+                            case "no" : member.removeRole(member.roles.find('name', "Contrôle ?")); message.channel.send(member.displayName+" a refusé la fouille."); break;
+                            default : member.send("Veuillez choisir entre ``-control yes`` ou ``-control no``.");
+                        }
+                    } else {
+                        member.send("Veuillez choisir entre ``-control yes`` ou ``-control no``.");
+                    }
+                } else {
+                    member.send("Personne ne demande à vous fouiller.");
+                }
+            }
                 // Milicien
             if (job == "Milicien") {
                 if (command == "control") {
