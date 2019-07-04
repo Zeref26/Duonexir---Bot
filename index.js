@@ -403,10 +403,9 @@ bot.on('message', message => {
                 // Salaire
             if (command == "salaire") {
                 message.delete();
-                596309837428555786
+                let trouve = 0;
                 bot.channels.get("596309837428555786").fetchMessages({limit:99}).then(messages4 => {
                     messages4.forEach((msg4) => {
-                        let trouve = 0;
                         if (msg4.content.includes(member.id)) {
                             member.send("Vous avez déjà reçu votre salaire. Revenez dans 24h.");
                         }
