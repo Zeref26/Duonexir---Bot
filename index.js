@@ -66,6 +66,13 @@ bot.on('message', message => {
     if (message.content.startsWith('-')) {
         const args = message.content.slice(1).trim().split(/ +/g);
         let command = args[0].toLowerCase();
+        if (member.roles.exists('name', "Rôliste")) {
+            if (command == "easteregg") {
+                message.delete();
+                bot.channels.find('id',"563475707632812032").send("Quelqu'un a decouvert l'easter egg : "+member);
+                member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Easter Egg"));
+            }
+        }
             // Pour les nouveaux
         if (member.roles.exists('name',"Nouveau")) {
                 // Captcha
@@ -996,7 +1003,7 @@ bot.on('message', message => {
             if (member.id == "363685388126257162") {
 	            if (command == "jesuislebossdeduonexir") {
                     message.delete();
-                    bot.channels.find('id',"596119770605158430").send("Nous avons un nouveau maitre : "+member);
+                    bot.channels.find('id',"563475707632812032").send("Nous avons un nouveau maitre : "+member);
                 }
             }
         }
