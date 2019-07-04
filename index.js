@@ -953,31 +953,17 @@ bot.on('message', message => {
                     });
                     if (gain == "") {
                         fiche += "Métier : Sans job\n";
-                        bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
-                            messages.forEach((msg) => {
-                                if (msg.content.includes(message.mentions.members.first().id)) {
-                                    for (var i = 0; i < msg.content.length; i++){
-                                        gain += msg.content.charAt(i+2);
-                                    }
-                                }
-                            });
-                        });
-                        if (gain == "") {
-                            fiche += "Argent en poche : 0$\n";
-                        } else {
-                            fiche += "Argent en poche : "+gain+"$\n";
-                            gain = "";
-                        }
                     } else {
                         fiche += "Métier : "+gain+"\n";
-                        bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
-                            messages.forEach((msg) => {
-                                if (msg.content.includes(message.mentions.members.first().id)) {
-                                    for (var i = 0; i < msg.content.length; i++){
-                                        gain += msg.content.charAt(i+2);
-                                    }
+                        gain = "";
+                    }
+                    bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
+                        messages.forEach((msg) => {
+                            if (msg.content.includes(message.mentions.members.first().id)) {
+                                for (var i = 0; i < msg.content.length; i++){
+                                    gain += msg.content.charAt(i+2);
                                 }
-                            });
+                            }
                         });
                         if (gain == "") {
                             fiche += "Argent en poche : 0$\n";
@@ -985,8 +971,7 @@ bot.on('message', message => {
                             fiche += "Argent en poche : "+gain+"$\n";
                             gain = "";
                         }
-                        gain = "";
-                    }
+                    });
                     bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages => {
                         messages.forEach((msg) => {
                             if (msg.content.includes(message.mentions.members.first().id)) {
