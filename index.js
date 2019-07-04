@@ -134,6 +134,8 @@ bot.on('message', message => {
                             case "forgeron" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Forgeron")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
                             case "herboriste" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Herboriste")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
                             case "mage" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Mage")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
+                            case "ménestrel" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Ménestrel")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
+                            case "ménestrel" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Ménestrel")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
                             case "milicien" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Milicien")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
                             case "mineur" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Mineur")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
                             case "paysan" : member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Paysan")); member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job")); break;
@@ -409,7 +411,8 @@ bot.on('message', message => {
                         case "erudit" : montant = 1100; break;
                         case "forgeron" : montant = 900; break;
                         case "herboriste" : montant = 800; break;
-                        case "mage" : montant = 600; break;
+                        case "mage" : montant = 500; break;
+                        case "ménestrel" : montant = 700; break;
                         case "milicien" : montant = 1300; break;
                         case "mineur" : montant = 850; break;
                         case "paysan" :  montant = 750; break;
