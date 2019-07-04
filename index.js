@@ -12,7 +12,6 @@ bot.on('guildMemberAdd', member => {
     member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Nouveau"));
     member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race"));
     member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job"));
-    bot.channels.get("585786450268913703").send(member.id+" : 0");
         //Captcha
     let a = Math.floor(Math.random()*100)+1;
     let b = Math.floor(Math.random()*100)+1;
@@ -38,13 +37,6 @@ bot.on('guildMemberRemove', member => {
         });
     });
     bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages => {
-        messages.forEach((msg) => {
-            if (msg.content.includes(member.id)) {
-                msg.delete();
-            }
-        });
-    });
-    bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages => {
         messages.forEach((msg) => {
             if (msg.content.includes(member.id)) {
                 msg.delete();
@@ -512,7 +504,7 @@ bot.on('message', message => {
                                                                 msg3.edit(member.id+" : "+(parseInt(crime)+1));
                                                                 let jour = Math.floor((Math.random()*4)+1);
                                                                 setTimeout(function() {
-                                                                    bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages4 => {
+                                                                    bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages4 => {
                                                                         messages4.forEach((msg4) => {
                                                                             let warn = "";
                                                                             if (msg4.content.includes(member.id)) {
@@ -850,13 +842,6 @@ bot.on('message', message => {
                                     }
                                 });
                             });
-                            bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages => {
-                                messages.forEach((msg) => {
-                                    if (msg.content.includes(c.id)) {
-                                        msg.delete();
-                                    }
-                                });
-                            });
                             bot.channels.get("563452601669124097").fetchMessages({limit:99}).then(messages => {
                                 messages.forEach((msg) => {
                                     if (msg.content.includes(c.id)) {
@@ -1009,91 +994,6 @@ bot.on('message', message => {
                     message.author.send("Veuillez mentionner quelqu'un, "+member+".");
                 }
             }
-                // Warn
-            if (command == "warn") {
-                message.delete();
-                if (message.mentions.members.size == 1) {
-                    if (args.length>2) {
-                        let reason = args.slice(2).join(" ");
-                        message.mentions.members.first().send("Vous avez été averti pour : "+reason);
-                        bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages => {
-                            messages.forEach((msg) => {
-                                let warn = "";
-                                if (msg.content.includes(message.mentions.members.first().id)) {
-                                    for (var i = 0; i < msg.content.length; i++){
-                                        if (msg.content.charAt(i) == ":"){
-                                            warn += msg.content.charAt(i+2);
-                                        }
-                                    }
-                                    bot.channels.find('id',"596119770605158430").send(member+" a averti "+message.mentions.members.first()+" pour "+reason);
-                                    if (parseInt(warn)+1 < 3) {
-                                        msg.edit(message.mentions.members.first().id+" : "+(parseInt(warn)+1));
-                                        message.mentions.members.first().send("Vous avez été averti pour la raison : "+reason+".");
-                                        setTimeout(function() {
-                                            bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages => {
-                                                messages.forEach((msg) => {
-                                                    let warn = "";
-                                                    if (msg.content.includes(message.mentions.members.first().id)) {
-                                                        for (var i = 0; i < msg.content.length; i++){
-                                                            if (msg.content.charAt(i) == ":"){
-                                                                warn += msg.content.charAt(i+2);
-                                                            }
-                                                        }
-                                                        msg.edit(message.mentions.members.first().id+" : "+(parseInt(warn)-1));
-                                                    }
-                                                });
-                                            });
-                                        },1000*60*60*24*7);
-                                    } else {
-                                        message.mentions.members.first().send("Vous avez été kick automatiquement suite à 3 avertissements rapprochés.");
-                                        bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
-                                            messages.forEach((msg) => {
-                                                if (msg.content.includes(message.mentions.members.first().id)) {
-                                                    msg.delete();
-                                                }
-                                            });
-                                        });
-                                        bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages => {
-                                            messages.forEach((msg) => {
-                                                if (msg.content.includes(message.mentions.members.first().id)) {
-                                                    msg.delete();
-                                                }
-                                            });
-                                        });
-                                        bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages => {
-                                            messages.forEach((msg) => {
-                                                if (msg.content.includes(message.mentions.members.first().id)) {
-                                                    msg.delete();
-                                                }
-                                            });
-                                        });
-                                        bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages => {
-                                            messages.forEach((msg) => {
-                                                if (msg.content.includes(message.mentions.members.first().id)) {
-                                                    msg.delete();
-                                                }
-                                            });
-                                        });
-                                        bot.channels.get("563452601669124097").fetchMessages({limit:99}).then(messages => {
-                                            messages.forEach((msg) => {
-                                                if (msg.content.includes(message.mentions.members.first().id)) {
-                                                    msg.delete();
-                                                }
-                                            });
-                                        });
-                                        message.mentions.members.first().kick();
-                                    }
-                                }
-                            });
-                        });
-                    } else {
-                        message.author.send("Veuillez mentionner quelqu'un, "+member+".");
-                    }
-                } else {
-                    message.author.send("Veuillez mentionner quelqu'un, "+member+".");
-                }
-            }
-        }
             // Pour les animateurs
         if (member.roles.exists('name', "Animateur")) {
             // Say
