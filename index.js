@@ -575,7 +575,7 @@ bot.on('message', message => {
                             member.send("Vous n'êtes pas dans le camp.")
                         }
                     } else {
-                        message.channel.send("Garde : Le mot de passe n'est pas "+args[2].toLowerCase()+" !\nL'homme pointe son arme vers vous.\nGarde : Quittez immédiateent la zone !");
+                        message.channel.send("Garde : Le mot de passe n'est pas "+args[1].toLowerCase()+" !\nL'homme pointe son arme vers vous.\nGarde : Quittez immédiateent la zone !");
                     }
                 } else {
                     member.send("-camp doit être utilisé à l'entrée du camp.");
