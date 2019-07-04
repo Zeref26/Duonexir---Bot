@@ -156,47 +156,51 @@ bot.on('message', message => {
             if (command == "go") {
                 message.delete();
                 if (args.length > 1) {
-                    if (member.roles.exists('name', "Visiteur")) {
-                        let dest = args[1].toLowerCase();
-                        switch (dest) {
-                            case "ademe" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Ademe")); break;
-                            case "atos" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Atos")); break;
-                            case "cleg" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Cleg")); break;
-                            case "eropel" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Eropel")); break;
-                            case "ganan" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Ganan")); break;
-                            case "iri" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Iri")); break;
-                            case "lidewil" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Lidewil")); break;
-                            case "moreo" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Moreo")); break;
-                            case "nec" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Nec")); break;
-                            case "rotua" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Rotua")); break;
-                            case "sobo" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Sobo")); break;
-                            case "vadep" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Vadep")); break;
-                            case "zadec" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Zadec")); break;
-                            default : member.send("Ce lieu n'existe pas.");
-                        }
-                    } else {
-                        let lieu = member.roles.find('hexColor', "#8b481a").name.toLowerCase();
-                        let dest = args[1].toLowerCase();
-                        if (!(lieu == dest)) {
+                    if (member.roles.exists('name', "Rebelle")) {
+                        if (member.roles.exists('name', "Visiteur")) {
+                            let dest = args[1].toLowerCase();
                             switch (dest) {
-                                case "ademe" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Ademe")); break;
-                                case "atos" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Atos")); break;
-                                case "cleg" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Cleg")); break;
-                                case "eropel" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Eropel")); break;
-                                case "ganan" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Ganan")); break;
-                                case "iri" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Iri")); break;
-                                case "lidewil" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Lidewil")); break;
-                                case "moreo" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Moreo")); break;
-                                case "nec" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Nec")); break;
-                                case "rotua" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Rotua")); break;
-                                case "sobo" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Sobo")); break;
-                                case "vadep" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Vadep")); break;
-                                case "zadec" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Zadec")); break;
+                                case "ademe" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Ademe")); break;
+                                case "atos" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Atos")); break;
+                                case "cleg" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Cleg")); break;
+                                case "eropel" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Eropel")); break;
+                                case "ganan" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Ganan")); break;
+                                case "iri" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Iri")); break;
+                                case "lidewil" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Lidewil")); break;
+                                case "moreo" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Moreo")); break;
+                                case "nec" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Nec")); break;
+                                case "rotua" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Rotua")); break;
+                                case "sobo" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Sobo")); break;
+                                case "vadep" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Vadep")); break;
+                                case "zadec" : member.removeRole(member.roles.find('name', "Visiteur")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Zadec")); break;
                                 default : member.send("Ce lieu n'existe pas.");
                             }
                         } else {
-                            member.send("Déplacement inutile, vous êtes déjà dans ce lieu.");
+                            let lieu = member.roles.find('hexColor', "#8b481a").name.toLowerCase();
+                            let dest = args[1].toLowerCase();
+                            if (!(lieu == dest)) {
+                                switch (dest) {
+                                    case "ademe" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Ademe")); break;
+                                    case "atos" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Atos")); break;
+                                    case "cleg" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Cleg")); break;
+                                    case "eropel" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Eropel")); break;
+                                    case "ganan" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Ganan")); break;
+                                    case "iri" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Iri")); break;
+                                    case "lidewil" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Lidewil")); break;
+                                    case "moreo" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Moreo")); break;
+                                    case "nec" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Nec")); break;
+                                    case "rotua" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Rotua")); break;
+                                    case "sobo" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Sobo")); break;
+                                    case "vadep" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Vadep")); break;
+                                    case "zadec" : member.removeRole(member.roles.find('hexColor', "#8b481a")); member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Zadec")); break;
+                                    default : member.send("Ce lieu n'existe pas.");
+                                }
+                            } else {
+                                member.send("Déplacement inutile, vous êtes déjà dans ce lieu.");
+                            }
                         }
+                    } else {
+                        member.send("Quittez tout d'abord le camp avec -camp quit.");
                     }
                 } else {
                     member.send("Entrez la destination dans la commande.");
@@ -553,6 +557,28 @@ bot.on('message', message => {
                     } else {
                         member.send("Vous devez mentionner une personne.");
                     }
+                }
+            }
+            if (command == "camp") {
+                if (args.length == 1 && message.channel.id == "595638030824636417") {
+                    message.channel.send("Alors que vous approchez de l'entrée du camp, un homme s'interpose.\nGarde : Quel est le code ?");
+                    member.send("Utilisez -camp [code] pour donner le code.");
+                } else if (args.length > 1 && message.channel.id == "595638030824636417") {
+                    if (args[2].toLowerCase() == "seth") {
+                        message.channel.send("Garde : Le mot de passe est correct, vous pouvez rentrer.\nL'homme s'écarte légèrement de l'entrer pour vous laisser passer.");
+                        member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Rebelle"));
+                    } else if (args[2].toLowerCase() == "quit") {
+                        if (member.roles.exists('name', "Rebelle")) {
+                            member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Rebelle"));
+                            member.send("Vous êtes sorti du camp.");
+                        } else {
+                            member.send("Vous n'êtes pas dans le camp.")
+                        }
+                    } else {
+                        message.channel.send("Garde : Le mot de passe n'est pas "+args[2].toLowerCase()+" !\nL'homme pointe son arme vers vous.\nGarde : Quittez immédiateent la zone !");
+                    }
+                } else {
+                    member.send("-camp doit être utilisé à l'entrée du camp.");
                 }
             }
                 // Casino
@@ -932,99 +958,6 @@ bot.on('message', message => {
                     } else {
                         message.author.send("Impossible. Cette personne n'a pas le rôle Sans fiche.");
                     }
-                } else {
-                    member.send("Veuillez mentionner quelqu'un, "+member+".");
-                }
-            }
-                // Fiche membre
-            if (command == "p") {
-                message.delete();
-                if (message.mentions.members.size == 1) {
-                    let mem = message.mentions.members.first()
-                    let fiche = "Fiche de "+message.mentions.members.first()+"\n```Nom du personnage : "+message.mentions.members.first().displayName+"\n";
-                    bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
-                        let gain = "";
-                        let gain2 = "";
-                        let gain3 = "";
-                        let gain4 = "";
-                        let gain5 = "";
-                        messages.forEach((msg) => {
-                            bot.channels.find('id',"564127912656109588").send("1");
-                            if (msg.content.includes(mem.id)) {
-                                bot.channels.find('id',"564127912656109588").send("2");
-                                for (var i = 0; i < msg.content.length; i++){
-                                    if (msg.content.charAt(i) == ":"){
-                                        for (var j = i+2 ; j < msg.content.length; j++){
-                                            gain += msg.content.charAt(j);
-                                        }
-                                    }
-                                }
-                            }
-                            bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
-                                messages2.forEach((msg2) => {
-                                    bot.channels.find('id',"564127912656109588").send("1");
-                                    if (msg.content.includes(mem.id)) {
-                                        bot.channels.find('id',"564127912656109588").send("2");
-                                        for (var i = 0; i < msg2.content.length; i++){
-                                            if (msg2.content.charAt(i) == ":"){
-                                                for (var j = i+2 ; j < msg2.content.length; j++){
-                                                    gain2 += msg2.content.charAt(j);
-                                                }
-                                            }
-                                        }
-                                    }
-                                    bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages3 => {
-                                        messages3.forEach((msg3) => {
-                                            bot.channels.find('id',"564127912656109588").send("1");
-                                            if (msg.content.includes(mem.id)) {
-                                                bot.channels.find('id',"564127912656109588").send("2");
-                                                for (var i = 0; i < msg3.content.length; i++){
-                                                    if (msg3.content.charAt(i) == ":"){
-                                                        for (var j = i+2 ; j < msg3.content.length; j++){
-                                                            gain3 += msg3.content.charAt(j);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages4 => {
-                                                messages4.forEach((msg4) => {
-                                                    if (msg4.content.includes(mem.id)) {
-                                                        for (var i = 0; i < msg4.content.length; i++){
-                                                            if (msg4.content.charAt(i) == ":"){
-                                                                for (var j = i+2 ; j < msg4.content.length; j++){
-                                                                    gain4 += msg4.content.charAt(j);
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                    bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages5 => {
-                                                        messages5.forEach((msg5) => {
-                                                            if (msg5.content.includes(mem.id)) {
-                                                                for (var i = 0; i < msg5.content.length; i++){
-                                                                    if (msg5.content.charAt(i) == ":"){
-                                                                        for (var j = i+2 ; j < msg5.content.length; j++){
-                                                                            gain5 += msg5.content.charAt(j);
-                                                                            bot.channels.find('id',"564127912656109588").send(gain5);
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        });
-                                                    });
-                                                });
-                                            });
-                                        });
-                                    });
-                                });
-                            });
-                        });
-                        fiche += "Métier : "+gain+"\n";
-                        fiche += "Argent en poche : "+gain2+"$\n";
-                        fiche += "Argent en banque : "+gain3+"$\n";
-                        fiche += "Criminalité : "+gain4+"\n\n";
-                        fiche += "Avertissement(s) : "+gain5;
-                        bot.channels.find('id',"564127912656109588").send(fiche+"```");
-                    });
                 } else {
                     member.send("Veuillez mentionner quelqu'un, "+member+".");
                 }
