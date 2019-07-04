@@ -447,6 +447,7 @@ bot.on('message', message => {
                                                             }
                                                         }
                                                         msg3.edit(member.id+" : "+(parseInt(b)+parseInt(montant)));
+                                                        bot.channels.get("596309837428555786").send(member.id);
                                                     }
                                                 });
                                             });
