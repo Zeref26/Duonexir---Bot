@@ -598,6 +598,7 @@ bot.on('message', message => {
                                 if (1==1) {
                                     for (var i = 0; i < msg4.content.length; i++){
                                         code += msg4.content.charAt(i+2);
+                                        message.channel.send(code);
                                     }
                                     if (args.slice(1).join(" ").toLowerCase() == code.toLowerCase()) {
                                         message.channel.send("Garde : Le mot de passe est correct, vous pouvez rentrer.\n**L'homme s'écarte légèrement de l'entrer pour vous laisser passer.**");
