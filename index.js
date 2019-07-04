@@ -595,14 +595,16 @@ bot.on('message', message => {
                         bot.channels.get("596341320591736832").fetchMessages({limit:99}).then(messages4 => {
                             let code = "";
                             messages4.forEach((msg4) => {
-                                for (var i = 0; i < msg4.content.length; i++){
+                                if (1==1) {
+                                    for (var i = 0; i < msg4.content.length; i++){
                                         code += msg4.content.charAt(i+2);
-                                }
-                                if (args.slice(1).join(" ").toLowerCase() == code.toLowerCase()) {
-                                    message.channel.send("Garde : Le mot de passe est correct, vous pouvez rentrer.\n**L'homme s'écarte légèrement de l'entrer pour vous laisser passer.**");
-                                    member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Rebelle"));
-                                } else {
-                                    message.channel.send("Garde : Le mot de passe n'est pas "+args[1].toLowerCase()+" !\n**L'homme pointe son arme vers vous.**\nGarde : Quittez immédiateent la zone !");
+                                    }
+                                    if (args.slice(1).join(" ").toLowerCase() == code.toLowerCase()) {
+                                        message.channel.send("Garde : Le mot de passe est correct, vous pouvez rentrer.\n**L'homme s'écarte légèrement de l'entrer pour vous laisser passer.**");
+                                        member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Rebelle"));
+                                    } else {
+                                        message.channel.send("Garde : Le mot de passe n'est pas "+args[1].toLowerCase()+" !\n**L'homme pointe son arme vers vous.**\nGarde : Quittez immédiatement la zone !");
+                                    }
                                 }
                             });
                         });
