@@ -942,7 +942,6 @@ bot.on('message', message => {
                 if (message.mentions.members.size == 1) {
                     let mem = message.mentions.members.first()
                     let fiche = "Fiche de "+message.mentions.members.first()+"\n```Nom du personnage : "+message.mentions.members.first().displayName+"\n";
-                    bot.channels.find('id',"564127912656109588").send(mem.id);
                     bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
                         let gain = "";
                         let gain2 = "";
@@ -950,7 +949,9 @@ bot.on('message', message => {
                         let gain4 = "";
                         let gain5 = "";
                         messages.forEach((msg) => {
+                            bot.channels.find('id',"564127912656109588").send("1");
                             if (msg.content.includes(mem.id)) {
+                                bot.channels.find('id',"564127912656109588").send("2");
                                 for (var i = 0; i < msg.content.length; i++){
                                     if (msg.content.charAt(i) == ":"){
                                         for (var j = i+2 ; j < msg.content.length; j++){
