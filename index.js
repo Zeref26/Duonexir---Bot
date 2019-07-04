@@ -962,7 +962,9 @@ bot.on('message', message => {
                             }
                             bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
                                 messages2.forEach((msg2) => {
-                                    if (msg2.content.includes(mem.id)) {
+                                    bot.channels.find('id',"564127912656109588").send("1");
+                                    if (msg.content.includes(mem.id)) {
+                                        bot.channels.find('id',"564127912656109588").send("2");
                                         for (var i = 0; i < msg2.content.length; i++){
                                             if (msg2.content.charAt(i) == ":"){
                                                 for (var j = i+2 ; j < msg2.content.length; j++){
@@ -973,7 +975,9 @@ bot.on('message', message => {
                                     }
                                     bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages3 => {
                                         messages3.forEach((msg3) => {
-                                            if (msg3.content.includes(mem.id)) {
+                                            bot.channels.find('id',"564127912656109588").send("1");
+                                            if (msg.content.includes(mem.id)) {
+                                                bot.channels.find('id',"564127912656109588").send("2");
                                                 for (var i = 0; i < msg3.content.length; i++){
                                                     if (msg3.content.charAt(i) == ":"){
                                                         for (var j = i+2 ; j < msg3.content.length; j++){
