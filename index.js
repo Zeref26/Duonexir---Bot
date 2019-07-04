@@ -12,6 +12,7 @@ bot.on('guildMemberAdd', member => {
     member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Nouveau"));
     member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Race"));
     member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Job"));
+    bot.channels.get("585786450268913703").send(member.id+" : 0");
         //Captcha
     let a = Math.floor(Math.random()*100)+1;
     let b = Math.floor(Math.random()*100)+1;
@@ -1012,10 +1013,10 @@ bot.on('message', message => {
                         if (gain == "") {
                             fiche += "Avertissement(s) : 0\n";
                         } else {
-                            fiche += "Avertissement(s) : "+gain+"```";
+                            fiche += "Avertissement(s) : "+gain;
                         }
                     });
-                    bot.channels.find('id',"564127912656109588").send(fiche);
+                    bot.channels.find('id',"564127912656109588").send(fiche+"```");
                 } else {
                     member.send("Veuillez mentionner quelqu'un, "+member+".");
                 }
@@ -1074,9 +1075,7 @@ bot.on('message', message => {
                         bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages => {
                             messages.forEach((msg) => {
                                 let warn = "";
-                                let trouve = 0;
                                 if (msg.content.includes(message.mentions.members.first().id)) {
-                                    trouve = 1;
                                     for (var i = 0; i < msg.content.length; i++){
                                         if (msg.content.charAt(i) == ":"){
                                             warn += msg.content.charAt(i+2);
@@ -1147,25 +1146,6 @@ bot.on('message', message => {
                                         });
                                         message.mentions.members.first().kick();
                                     }
-                                }
-                                if (trouve == 0) {
-                                    bot.channels.find('id',"585786450268913703").send(message.mentions.members.first().id+" : 1");
-                                    setTimeout(function() {
-                                        bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages => {
-                                            messages.forEach((msg) => {
-                                                let warn = "";
-                                                if (msg.content.includes(message.mentions.members.first().id)) {
-                                                    for (var i = 0; i < msg.content.length; i++){
-                                                        if (msg.content.charAt(i) == ":"){
-                                                            warn += msg.content.charAt(i+2);
-                                                        }
-                                                    }
-                                                    msg.edit(message.mentions.members.first().id+" : "+(parseInt(warn)-1));
-                                                    bot.channels.find('id',"596119770605158430").send(member+" a averti "+message.mentions.members.first()+" pour "+reason);
-                                                }
-                                            });
-                                        });
-                                    },1000*60*60*24*7);
                                 }
                             });
                         });
