@@ -144,7 +144,6 @@ bot.on('message', message => {
         }
             // Pour les rôlistes
         if (member.roles.exists('name', "Rôliste")) {
-            let job = member.roles.find('hexColor', "#ac8532").name;
                 // Déplacement
             if (command == "go") {
                 message.delete();
@@ -400,7 +399,7 @@ bot.on('message', message => {
                     member.send("Vous avez déjà reçu votre salaire. Revenez dans 24h.");
                 } else {
                     let montant = 0;
-                    switch (job.toLowerCase()) {
+                    switch (member.roles.find('hexColor', "#ac8532").name.toLowerCase()) {
                         case "alchimiste" : montant = 900; break;
                         case "erudit" : montant = 1100; break;
                         case "forgeron" : montant = 900; break;
@@ -704,7 +703,7 @@ bot.on('message', message => {
                 }
             }
                 // Contrôles
-            if (command == "control" && job != "Milicien") {
+            if (command == "control" && member.roles.find('hexColor', "#ac8532").name != "Milicien") {
                 if (member.roles.exists('name', "Contrôle ?")) {
                     if (args.length == 2) {
                         switch (args[1].toLowerCase()) {
@@ -720,7 +719,7 @@ bot.on('message', message => {
                 }
             }
                 // Milicien
-            if (job == "Milicien") {
+            if (member.roles.find('hexColor', "#ac8532").name == "Milicien") {
                 if (command == "control") {
                     if (args[1].toLowerCase() == "ask") {
                         if (message.mentions.members.size == 1) {
