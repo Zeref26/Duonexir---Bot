@@ -579,6 +579,7 @@ bot.on('message', message => {
                 }
             }
             if (command == "camp") {
+                message.delete();
                 if (args.length == 1 && message.channel.id == "595638030824636417") {
                     message.channel.send("**Alors que vous approchez de l'entrée du camp, un homme s'interpose.**\nGarde : Quel est le code ?");
                     member.send("Utilisez -camp [code] pour donner le code.");
@@ -592,12 +593,12 @@ bot.on('message', message => {
                         }
                     } else {
                         bot.channels.get("596341320591736832").fetchMessages({limit:99}).then(messages4 => {
+                            let code = "";
                             messages4.forEach((msg4) => {
-                                let code = "";
                                 for (var i = 0; i < msg4.content.length; i++){
                                         code += msg4.content.charAt(i+2);
                                 }
-                                if (args[1].toLowerCase() == code.toLowerCase()) {
+                                if (args.slice(1).join(" ").toLowerCase() == code.toLowerCase()) {
                                     message.channel.send("Garde : Le mot de passe est correct, vous pouvez rentrer.\n**L'homme s'écarte légèrement de l'entrer pour vous laisser passer.**");
                                     member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Rebelle"));
                                 } else {
