@@ -942,12 +942,52 @@ bot.on('message', message => {
                 if (message.mentions.members.size == 1) {
                     let fiche = "Fiche de "+message.mentions.members.first()+"\n```Nom du personnage : "+message.mentions.members.first().displayName+"\n";
                     let gain = "";
+                    let gain2 = "";
+                    let gain3 = "";
+                    let gain4 = "";
+                    let gain5 = "";
                     bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
                         messages.forEach((msg) => {
                             if (msg.content.includes(message.mentions.members.first().id)) {
                                 for (var i = 0; i < msg.content.length; i++){
                                     gain += msg.content.charAt(i+2);
                                 }
+                                bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
+                                    messages2.forEach((msg2) => {
+                                        if (msg2.content.includes(message.mentions.members.first().id)) {
+                                            for (var i = 0; i < msg2.content.length; i++){
+                                                gain2 += msg2.content.charAt(i+2);
+                                            }
+                                            bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages3 => {
+                                                messages3.forEach((msg3) => {
+                                                    if (msg3.content.includes(message.mentions.members.first().id)) {
+                                                        for (var i = 0; i < msg3.content.length; i++){
+                                                            gain3 += msg3.content.charAt(i+2);
+                                                        }
+                                                        bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages4 => {
+                                                            messages4.forEach((msg4) => {
+                                                                if (msg4.content.includes(message.mentions.members.first().id)) {
+                                                                    for (var i = 0; i < msg4.content.length; i++){
+                                                                        gain4 += msg4.content.charAt(i+2);
+                                                                    }
+                                                                    bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages5 => {
+                                                                        messages5.forEach((msg5) => {
+                                                                            if (msg5.content.includes(message.mentions.members.first().id)) {
+                                                                                for (var i = 0; i < msg5.content.length; i++){
+                                                                                    gain5 += msg5.content.charAt(i+2);
+                                                                                }
+                                                                            }
+                                                                        });
+                                                                    });
+                                                                }
+                                                            });
+                                                        });
+                                                    }
+                                                });
+                                            });
+                                        }
+                                    });
+                                });
                             }
                         });
                     });
@@ -955,67 +995,26 @@ bot.on('message', message => {
                         fiche += "Métier : Sans job\n";
                     } else {
                         fiche += "Métier : "+gain+"\n";
-                        gain = "";
                     }
-                    bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
-                        messages.forEach((msg) => {
-                            if (msg.content.includes(message.mentions.members.first().id)) {
-                                for (var i = 0; i < msg.content.length; i++){
-                                    gain += msg.content.charAt(i+2);
-                                }
-                            }
-                        });
-                        if (gain == "") {
-                            fiche += "Argent en poche : 0$\n";
-                        } else {
-                            fiche += "Argent en poche : "+gain+"$\n";
-                            gain = "";
-                        }
-                    });
-                    bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages => {
-                        messages.forEach((msg) => {
-                            if (msg.content.includes(message.mentions.members.first().id)) {
-                                for (var i = 0; i < msg.content.length; i++){
-                                    gain += msg.content.charAt(i+2);
-                                }
-                            }
-                        });
-                    });
-                    if (gain == "") {
+                    if (gain2 == "") {
+                        fiche += "Argent en poche : 0$\n";
+                    } else {
+                        fiche += "Argent en poche : "+gain2+"$\n";
+                    }
+                    if (gain3 == "") {
                         fiche += "Argent en banque : 0$\n";
                     } else {
-                        fiche += "Argent en banque : "+gain+"$\n";
-                        gain = "";
+                        fiche += "Argent en banque : "+gain3+"$\n";
                     }
-                    bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages => {
-                        messages.forEach((msg) => {
-                            if (msg.content.includes(message.mentions.members.first().id)) {
-                                for (var i = 0; i < msg.content.length; i++){
-                                    gain += msg.content.charAt(i+2);
-                                }
-                            }
-                        });
-                    });
-                    if (gain == "") {
+                    if (gain4 == "") {
                         fiche += "Criminalité : 0\n";
                     } else {
-                        fiche += "Criminalité : "+gain+"\n\n";
-                        gain = "";
+                        fiche += "Criminalité : "+gain4+"\n\n";
                     }
-                    bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages => {
-                        messages.forEach((msg) => {
-                            if (msg.content.includes(message.mentions.members.first().id)) {
-                                for (var i = 0; i < msg.content.length; i++){
-                                    gain += msg.content.charAt(i+2);
-                                }
-                            }
-                        });
-                    });
-                    if (gain == "") {
+                    if (gain5 == "") {
                         fiche += "Avertissement(s) : 0\n";
                     } else {
-                        fiche += "Avertissement(s) : "+gain;
-                        gain = "";
+                        fiche += "Avertissement(s) : "+gain5;
                     }
                     bot.channels.find('id',"564127912656109588").send(fiche+"```");
                 } else {
@@ -1072,7 +1071,7 @@ bot.on('message', message => {
                 if (message.mentions.members.size == 1) {
                     if (args.length>2) {
                         let reason = args.slice(2).join(" ");
-                        message.mentions.members.first().send("Vous avez été averti pour : "+reason);7
+                        message.mentions.members.first().send("Vous avez été averti pour : "+reason);
                         bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages => {
                             messages.forEach((msg) => {
                                 let warn = "";
