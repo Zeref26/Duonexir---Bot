@@ -733,27 +733,13 @@ bot.on('message', message => {
                     if (args[1].toLowerCase() == "ask") {
                         if (message.mentions.members.size == 1) {
                             let acc = message.mentions.members.first();
-                            bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
-                                messages.forEach((msg) => {
-                                    let job = "";
-                                    if (msg.content.includes(acc.id)) {
-                                        for (var i = 0; i < msg.content.length; i++){
-                                            if (msg.content.charAt(i) == ":"){
-                                                for (var j = i+2 ; j < msg.content.length; j++){
-                                                    job += msg.content.charAt(j);
-                                                }
-                                            }
-                                        }
-                                        if (job == "Milicien") {
-                                            member.send("Vous ne pouvez fouiller un milicien.");
-                                        } else {
-                                            acc.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Contrôle ?"));
-                                            message.channel.send(member.displayName+" demande l'autorisation à "+acc.displayName+" pour faire une fouille.");
-                                            acc.send("Vous allez être fouiller, entrez ``-control yes`` pour accepter ou ``-control no`` pour refuser.");
-                                        }
-                                    }
-                                });
-                            });
+                            if (acc.roles.find('hexColor', "#ac8532").name == "Milicien") {
+                                member.send("Vous ne pouvez fouiller un milicien.");
+                            } else {
+                                acc.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Contrôle ?"));
+                                message.channel.send(member.displayName+" demande l'autorisation à "+acc.displayName+" pour faire une fouille.");
+                                acc.send("Vous allez être fouiller, entrez ``-control yes`` pour accepter ou ``-control no`` pour refuser.");
+                            }
                         } else {
                             member.send("Vous devez mentionner la personne.");
                         }
