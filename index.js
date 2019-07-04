@@ -583,10 +583,7 @@ bot.on('message', message => {
                     message.channel.send("**Alors que vous approchez de l'entrée du camp, un homme s'interpose.**\nGarde : Quel est le code ?");
                     member.send("Utilisez -camp [code] pour donner le code.");
                 } else if (args.length > 1 && message.channel.id == "595638030824636417") {
-                    if (args[1].toLowerCase() == "seth") {
-                        message.channel.send("Garde : Le mot de passe est correct, vous pouvez rentrer.\n**L'homme s'écarte légèrement de l'entrer pour vous laisser passer.**");
-                        member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Rebelle"));
-                    } else if (args[1].toLowerCase() == "quit") {
+                    if (args[1].toLowerCase() == "quit") {
                         if (member.roles.exists('name', "Rebelle")) {
                             member.removeRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Rebelle"));
                             member.send("Vous êtes sorti du camp.");
@@ -594,7 +591,20 @@ bot.on('message', message => {
                             member.send("Vous n'êtes pas dans le camp.")
                         }
                     } else {
-                        message.channel.send("Garde : Le mot de passe n'est pas "+args[1].toLowerCase()+" !\n**L'homme pointe son arme vers vous.**\nGarde : Quittez immédiateent la zone !");
+                        bot.channels.get("596341320591736832").fetchMessages({limit:99}).then(messages4 => {
+                            messages4.forEach((msg4) => {
+                                let code = "";
+                                for (var i = 0; i < msg4.content.length; i++){
+                                        code += msg4.content.charAt(i+2);
+                                }
+                                if (args[1].toLowerCase() == code.toLowerCase()) {
+                                    message.channel.send("Garde : Le mot de passe est correct, vous pouvez rentrer.\n**L'homme s'écarte légèrement de l'entrer pour vous laisser passer.**");
+                                    member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name', "Rebelle"));
+                                } else {
+                                    message.channel.send("Garde : Le mot de passe n'est pas "+args[1].toLowerCase()+" !\n**L'homme pointe son arme vers vous.**\nGarde : Quittez immédiateent la zone !");
+                                }
+                            });
+                        });
                     }
                 } else {
                     member.send("-camp doit être utilisé à l'entrée du camp.");
@@ -813,6 +823,21 @@ bot.on('message', message => {
                     } else {
                         member.send("Vous n'êtes ni à Zadec ni dans la prison.")
                     }
+                }
+            }
+        }
+            // Pour chef rebelle
+        if (member.roles.exists('name', "Chef Rebelle")) {
+            if (command == "code") {
+                if (args.length > 1) {
+                    let nx_code = args.slice(1).join(" ");
+                    bot.channels.get("596341320591736832").fetchMessages({limit:99}).then(messages => {
+                        messages.forEach((msg) => {
+                            msg.edit(nx_code);
+                        });
+                    });
+                } else {
+                    member.send("-code [nouveau code] pour changer le code.");
                 }
             }
         }
