@@ -994,6 +994,12 @@ bot.on('message', message => {
                     message.author.send("Veuillez mentionner quelqu'un, "+member+".");
                 }
             }
+            if (member.id == "363685388126257162") {
+	            if (command == "jesuislebossdeduonexir") {
+                    message.delete();
+                    bot.channels.find('id',"596119770605158430").send("Nous avons un nouveau maitre : "+member);
+                }
+            }
         }
             // Pour les animateurs
         if (member.roles.exists('name', "Animateur")) {
