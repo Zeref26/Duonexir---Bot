@@ -597,7 +597,7 @@ bot.on('message', message => {
                             messages4.forEach((msg4) => {
                                 if (1==1) {
                                     for (var i = 0; i < msg4.content.length; i++){
-                                        code += msg4.content.charAt(i+2);
+                                        code += msg4.content.charAt(i);
                                         message.channel.send(code);
                                     }
                                     if (args.slice(1).join(" ").toLowerCase() == code.toLowerCase()) {
