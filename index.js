@@ -761,7 +761,7 @@ bot.on('message', message => {
                             bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages => {
                                 messages.forEach((msg) => {
                                     let crime = "";
-                                    if (msg.content.includes(member.id)) {
+                                    if (msg.content.includes(acc.id)) {
                                         for (var i = 0; i < msg.content.length; i++){
                                             if (msg.content.charAt(i) == ":"){
                                                 for (var j = i+2 ; j < msg.content.length; j++){
