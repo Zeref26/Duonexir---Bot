@@ -66,12 +66,10 @@ bot.on('message', message => {
     if (message.content.startsWith('-')) {
         const args = message.content.slice(1).trim().split(/ +/g);
         let command = args[0].toLowerCase();
-        if (member.roles.exists('name', "Rôliste")) {
-            if (command == "easteregg") {
-                message.delete();
-                bot.channels.find('id',"563475707632812032").send("Quelqu'un a decouvert l'easter egg : "+member);
-                member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Easter Egg"));
-            }
+        if (command == "easteregg") {
+            message.delete();
+            bot.channels.find('id',"563475707632812032").send("Quelqu'un a decouvert l'easter egg : "+member);
+            member.addRole(bot.guilds.find('id',"563406137215549461").roles.find('name',"Easter Egg"));
         }
             // Pour les nouveaux
         if (member.roles.exists('name',"Nouveau")) {
