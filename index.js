@@ -941,40 +941,60 @@ bot.on('message', message => {
                 message.delete();
                 if (message.mentions.members.size == 1) {
                     let fiche = "Fiche de "+message.mentions.members.first()+"\n```Nom du personnage : "+message.mentions.members.first().displayName+"\n";
-                    let gain = "";
-                    let gain2 = "";
-                    let gain3 = "";
-                    let gain4 = "";
-                    let gain5 = "";
                     bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
+                        let gain = "";
+                        let gain2 = "";
+                        let gain3 = "";
+                        let gain4 = "";
+                        let gain5 = "";
                         messages.forEach((msg) => {
                             if (msg.content.includes(message.mentions.members.first().id)) {
                                 for (var i = 0; i < msg.content.length; i++){
-                                    gain += msg.content.charAt(i+2);
+                                    if (msg.content.charAt(i) == ":"){
+                                        for (var j = i+2 ; j < msg.content.length; j++){
+                                            gain += msg.content.charAt(j);
+                                        }
+                                    }
                                 }
                                 bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
                                     messages2.forEach((msg2) => {
                                         if (msg2.content.includes(message.mentions.members.first().id)) {
                                             for (var i = 0; i < msg2.content.length; i++){
-                                                gain2 += msg2.content.charAt(i+2);
+                                                if (msg2.content.charAt(i) == ":"){
+                                                    for (var j = i+2 ; j < msg2.content.length; j++){
+                                                        gain2 += msg2.content.charAt(j);
+                                                    }
+                                                }
                                             }
                                             bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages3 => {
                                                 messages3.forEach((msg3) => {
                                                     if (msg3.content.includes(message.mentions.members.first().id)) {
                                                         for (var i = 0; i < msg3.content.length; i++){
-                                                            gain3 += msg3.content.charAt(i+2);
+                                                            if (msg3.content.charAt(i) == ":"){
+                                                                for (var j = i+2 ; j < msg3.content.length; j++){
+                                                                    gain3 += msg3.content.charAt(j);
+                                                                }
+                                                            }
                                                         }
                                                         bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages4 => {
                                                             messages4.forEach((msg4) => {
                                                                 if (msg4.content.includes(message.mentions.members.first().id)) {
                                                                     for (var i = 0; i < msg4.content.length; i++){
-                                                                        gain4 += msg4.content.charAt(i+2);
+                                                                        if (msg4.content.charAt(i) == ":"){
+                                                                            for (var j = i+2 ; j < msg4.content.length; j++){
+                                                                                gain4 += msg4.content.charAt(j);
+                                                                            }
+                                                                        }
                                                                     }
                                                                     bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages5 => {
                                                                         messages5.forEach((msg5) => {
                                                                             if (msg5.content.includes(message.mentions.members.first().id)) {
                                                                                 for (var i = 0; i < msg5.content.length; i++){
-                                                                                    gain5 += msg5.content.charAt(i+2);
+                                                                                    if (msg5.content.charAt(i) == ":"){
+                                                                                        for (var j = i+2 ; j < msg5.content.length; j++){
+                                                                                            gain5 += msg5.content.charAt(j);
+                                                                                        }
+                                                                                    }
                                                                                 }
                                                                             }
                                                                         });
@@ -990,33 +1010,33 @@ bot.on('message', message => {
                                 });
                             }
                         });
+                        if (gain == "") {
+                            fiche += "Métier : Sans job\n";
+                        } else {
+                            fiche += "Métier : "+gain+"\n";
+                        }
+                        if (gain2 == "") {
+                            fiche += "Argent en poche : 0$\n";
+                        } else {
+                            fiche += "Argent en poche : "+gain2+"$\n";
+                        }
+                        if (gain3 == "") {
+                            fiche += "Argent en banque : 0$\n";
+                        } else {
+                            fiche += "Argent en banque : "+gain3+"$\n";
+                        }
+                        if (gain4 == "") {
+                            fiche += "Criminalité : 0\n";
+                        } else {
+                            fiche += "Criminalité : "+gain4+"\n\n";
+                        }
+                        if (gain5 == "") {
+                            fiche += "Avertissement(s) : 0\n";
+                        } else {
+                            fiche += "Avertissement(s) : "+gain5;
+                        }
+                        bot.channels.find('id',"564127912656109588").send(fiche+"```");
                     });
-                    if (gain == "") {
-                        fiche += "Métier : Sans job\n";
-                    } else {
-                        fiche += "Métier : "+gain+"\n";
-                    }
-                    if (gain2 == "") {
-                        fiche += "Argent en poche : 0$\n";
-                    } else {
-                        fiche += "Argent en poche : "+gain2+"$\n";
-                    }
-                    if (gain3 == "") {
-                        fiche += "Argent en banque : 0$\n";
-                    } else {
-                        fiche += "Argent en banque : "+gain3+"$\n";
-                    }
-                    if (gain4 == "") {
-                        fiche += "Criminalité : 0\n";
-                    } else {
-                        fiche += "Criminalité : "+gain4+"\n\n";
-                    }
-                    if (gain5 == "") {
-                        fiche += "Avertissement(s) : 0\n";
-                    } else {
-                        fiche += "Avertissement(s) : "+gain5;
-                    }
-                    bot.channels.find('id',"564127912656109588").send(fiche+"```");
                 } else {
                     member.send("Veuillez mentionner quelqu'un, "+member+".");
                 }
