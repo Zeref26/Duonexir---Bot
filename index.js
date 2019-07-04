@@ -935,6 +935,90 @@ bot.on('message', message => {
                     member.send("Veuillez mentionner quelqu'un, "+member+".");
                 }
             }
+                // Fiche membre
+            if (command == "p") {
+                message.delete();
+                if (message.mentions.members.size == 1) {
+                    let fiche = "Fiche de "+message.mentions.members.first()+"\n```Nom du personnage : "+message.mentions.members.first().displayName+"\n";
+                    bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
+                        let gain = "";
+                        messages.forEach((msg) => {
+                            if (msg.content.includes(message.mentions.members.first().id)) {
+                                for (var i = 0; i < msg.content.length; i++){
+                                    gain += msg.content.charAt(i+2);
+                                }
+                            }
+                        });
+                        if (gain == "") {
+                            fiche += "Métier : Sans job\n";
+                        } else {
+                            fiche += "Métier : "+gain+"\n";
+                        }
+                    });
+                    bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages => {
+                        let gain = "";
+                        messages.forEach((msg) => {
+                            if (msg.content.includes(message.mentions.members.first().id)) {
+                                for (var i = 0; i < msg.content.length; i++){
+                                    gain += msg.content.charAt(i+2);
+                                }
+                            }
+                        });
+                        if (gain == "") {
+                            fiche += "Argent en poche : 0$\n";
+                        } else {
+                            fiche += "Argent en poche : "+gain+"$\n";
+                        }
+                    });
+                    bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages => {
+                        let gain = "";
+                        messages.forEach((msg) => {
+                            if (msg.content.includes(message.mentions.members.first().id)) {
+                                for (var i = 0; i < msg.content.length; i++){
+                                    gain += msg.content.charAt(i+2);
+                                }
+                            }
+                        });
+                        if (gain == "") {
+                            fiche += "Argent en banque : 0$\n";
+                        } else {
+                            fiche += "Argent en banque : "+gain+"$\n";
+                        }
+                    });
+                    bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages => {
+                        let gain = "";
+                        messages.forEach((msg) => {
+                            if (msg.content.includes(message.mentions.members.first().id)) {
+                                for (var i = 0; i < msg.content.length; i++){
+                                    gain += msg.content.charAt(i+2);
+                                }
+                            }
+                        });
+                        if (gain == "") {
+                            fiche += "Criminalité : 0\n";
+                        } else {
+                            fiche += "Criminalité : "+gain+"\n\n";
+                        }
+                    });
+                    bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages => {
+                        let gain = "";
+                        messages.forEach((msg) => {
+                            if (msg.content.includes(message.mentions.members.first().id)) {
+                                for (var i = 0; i < msg.content.length; i++){
+                                    gain += msg.content.charAt(i+2);
+                                }
+                            }
+                        });
+                        if (gain == "") {
+                            fiche += "Avertissement(s) : 0\n";
+                        } else {
+                            fiche += "Avertissement(s) : "+gain+"```";
+                        }
+                    });
+                } else {
+                    member.send("Veuillez mentionner quelqu'un, "+member+".");
+                }
+            }
                 // Say
             if (command == "say") {
                 message.delete();
