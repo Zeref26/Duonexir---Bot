@@ -400,6 +400,66 @@ bot.on('message', message => {
                     member.send("Vous n'êtes pas à la banque.");
                 }
             }
+                // Salaire
+            if (command == "salaire") {
+                message.delete();
+                596309837428555786
+                let trouve = 0;
+                bot.channels.get("596309837428555786").fetchMessages({limit:99}).then(messages4 => {
+                    messages4.forEach((msg4) => {
+                        if (msg4.content.includes(member.id)) {
+                            trouve = 1;
+                        }
+                    });
+                });
+                if (trouve == 0) {
+                    let job = "";
+                    bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
+                        messages.forEach((msg) => {
+                            if (msg.content.includes(member.id)) {
+                                for (var i = 0; i < msg.content.length; i++){
+                                    if (msg.content.charAt(i) == ":"){
+                                        for (var j = i+2 ; j < msg.content.length; j++){
+                                            job += msg.content.charAt(j);
+                                        }
+                                    }
+                                }
+                                bot.channels.get("596308679284883468").fetchMessages({limit:99}).then(messages2 => {
+                                    messages2.forEach((msg2) => {
+                                        let montant = "";
+                                        if (msg2.content.includes(job)) {
+                                            for (var i = 0; i < msg2.content.length; i++){
+                                                if (msg2.content.charAt(i) == ":"){
+                                                    for (var j = i+2 ; j < msg2.content.length; j++){
+                                                        montant += msg2.content.charAt(j);
+                                                    }
+                                                }
+                                            }
+                                            bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages3 => {
+                                                messages3.forEach((msg3) => {
+                                                    let b = "";
+                                                    if (msg3.content.includes(member.id)) {
+                                                        for (var i = 0; i < msg3.content.length; i++){
+                                                            if (msg3.content.charAt(i) == ":"){
+                                                                for (var j = i+2 ; j < msg3.content.length; j++){
+                                                                    b += msg3.content.charAt(j);
+                                                                }
+                                                            }
+                                                        }
+                                                        msg3.edit(member.id+" : "+(parseInt(b)+parseInt(montant)));
+                                                    }
+                                                });
+                                            });
+                                        }
+                                    });
+                                });
+                            }
+                        });
+                    });
+                } else {
+                    member.send("Vous avez déjà reçu votre salaire. Revenez dans 24h.");
+                }
+            }
                 // Chuchotter
             if (command == "w") {
                 message.delete();
