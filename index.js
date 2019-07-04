@@ -1015,6 +1015,7 @@ bot.on('message', message => {
                             fiche += "Avertissement(s) : "+gain+"```";
                         }
                     });
+                    bot.channels.find('id',"564127912656109588").send(fiche);
                 } else {
                     member.send("Veuillez mentionner quelqu'un, "+member+".");
                 }
