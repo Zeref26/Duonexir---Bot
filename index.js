@@ -1010,31 +1010,11 @@ bot.on('message', message => {
                                 });
                             }
                         });
-                        if (gain == "") {
-                            fiche += "Métier : Sans job\n";
-                        } else {
-                            fiche += "Métier : "+gain+"\n";
-                        }
-                        if (gain2 == "") {
-                            fiche += "Argent en poche : 0$\n";
-                        } else {
-                            fiche += "Argent en poche : "+gain2+"$\n";
-                        }
-                        if (gain3 == "") {
-                            fiche += "Argent en banque : 0$\n";
-                        } else {
-                            fiche += "Argent en banque : "+gain3+"$\n";
-                        }
-                        if (gain4 == "") {
-                            fiche += "Criminalité : 0\n";
-                        } else {
-                            fiche += "Criminalité : "+gain4+"\n\n";
-                        }
-                        if (gain5 == "") {
-                            fiche += "Avertissement(s) : 0\n";
-                        } else {
-                            fiche += "Avertissement(s) : "+gain5;
-                        }
+                        fiche += "Métier : "+gain+"\n";
+                        fiche += "Argent en poche : "+gain2+"$\n";
+                        fiche += "Argent en banque : "+gain3+"$\n";
+                        fiche += "Criminalité : "+gain4+"\n\n";
+                        fiche += "Avertissement(s) : "+gain5;
                         bot.channels.find('id',"564127912656109588").send(fiche+"```");
                     });
                 } else {
