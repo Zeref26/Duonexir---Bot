@@ -957,59 +957,60 @@ bot.on('message', message => {
                                         }
                                     }
                                 }
-                                bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
-                                    messages2.forEach((msg2) => {
-                                        if (msg2.content.includes(message.mentions.members.first().id)) {
-                                            for (var i = 0; i < msg2.content.length; i++){
-                                                if (msg2.content.charAt(i) == ":"){
-                                                    for (var j = i+2 ; j < msg2.content.length; j++){
-                                                        gain2 += msg2.content.charAt(j);
+                            }
+                            bot.channels.get("564400698767310864").fetchMessages({limit:99}).then(messages2 => {
+                                messages2.forEach((msg2) => {
+                                    if (msg2.content.includes(message.mentions.members.first().id)) {
+                                        for (var i = 0; i < msg2.content.length; i++){
+                                            if (msg2.content.charAt(i) == ":"){
+                                                for (var j = i+2 ; j < msg2.content.length; j++){
+                                                    gain2 += msg2.content.charAt(j);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages3 => {
+                                        messages3.forEach((msg3) => {
+                                            if (msg3.content.includes(message.mentions.members.first().id)) {
+                                                for (var i = 0; i < msg3.content.length; i++){
+                                                    if (msg3.content.charAt(i) == ":"){
+                                                        for (var j = i+2 ; j < msg3.content.length; j++){
+                                                            gain3 += msg3.content.charAt(j);
+                                                        }
                                                     }
                                                 }
                                             }
-                                            bot.channels.get("596004025967575053").fetchMessages({limit:99}).then(messages3 => {
-                                                messages3.forEach((msg3) => {
-                                                    if (msg3.content.includes(message.mentions.members.first().id)) {
-                                                        for (var i = 0; i < msg3.content.length; i++){
-                                                            if (msg3.content.charAt(i) == ":"){
-                                                                for (var j = i+2 ; j < msg3.content.length; j++){
-                                                                    gain3 += msg3.content.charAt(j);
+                                            bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages4 => {
+                                                messages4.forEach((msg4) => {
+                                                    if (msg4.content.includes(message.mentions.members.first().id)) {
+                                                        for (var i = 0; i < msg4.content.length; i++){
+                                                            if (msg4.content.charAt(i) == ":"){
+                                                                for (var j = i+2 ; j < msg4.content.length; j++){
+                                                                    gain4 += msg4.content.charAt(j);
                                                                 }
                                                             }
                                                         }
-                                                        bot.channels.get("595582435345956885").fetchMessages({limit:99}).then(messages4 => {
-                                                            messages4.forEach((msg4) => {
-                                                                if (msg4.content.includes(message.mentions.members.first().id)) {
-                                                                    for (var i = 0; i < msg4.content.length; i++){
-                                                                        if (msg4.content.charAt(i) == ":"){
-                                                                            for (var j = i+2 ; j < msg4.content.length; j++){
-                                                                                gain4 += msg4.content.charAt(j);
-                                                                            }
+                                                    }
+                                                    bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages5 => {
+                                                        messages5.forEach((msg5) => {
+                                                            if (msg5.content.includes(message.mentions.members.first().id)) {
+                                                                for (var i = 0; i < msg5.content.length; i++){
+                                                                    if (msg5.content.charAt(i) == ":"){
+                                                                        for (var j = i+2 ; j < msg5.content.length; j++){
+                                                                            gain5 += msg5.content.charAt(j);
+                                                                            bot.channels.find('id',"564127912656109588").send(gain5);
                                                                         }
                                                                     }
-                                                                    bot.channels.get("585786450268913703").fetchMessages({limit:99}).then(messages5 => {
-                                                                        messages5.forEach((msg5) => {
-                                                                            if (msg5.content.includes(message.mentions.members.first().id)) {
-                                                                                for (var i = 0; i < msg5.content.length; i++){
-                                                                                    if (msg5.content.charAt(i) == ":"){
-                                                                                        for (var j = i+2 ; j < msg5.content.length; j++){
-                                                                                            gain5 += msg5.content.charAt(j);
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        });
-                                                                    });
                                                                 }
-                                                            });
+                                                            }
                                                         });
-                                                    }
+                                                    });
                                                 });
                                             });
-                                        }
+                                        });
                                     });
                                 });
-                            }
+                            });
                         });
                         fiche += "Métier : "+gain+"\n";
                         fiche += "Argent en poche : "+gain2+"$\n";
