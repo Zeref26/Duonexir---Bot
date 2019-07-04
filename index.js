@@ -994,6 +994,7 @@ bot.on('message', message => {
                     message.author.send("Veuillez mentionner quelqu'un, "+member+".");
                 }
             }
+        }
             // Pour les animateurs
         if (member.roles.exists('name', "Animateur")) {
             // Say
