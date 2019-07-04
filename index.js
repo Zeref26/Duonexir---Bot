@@ -404,14 +404,16 @@ bot.on('message', message => {
             if (command == "salaire") {
                 message.delete();
                 596309837428555786
-                let trouve = 0;
                 bot.channels.get("596309837428555786").fetchMessages({limit:99}).then(messages4 => {
+                    let trouve = 0;
                     messages4.forEach((msg4) => {
                         if (msg4.content.includes(member.id)) {
-                            trouve = 1;
+                            member.send("Vous avez déjà reçu votre salaire. Revenez dans 24h.");
+                            break;
                         }
                     });
                 });
+                message.channel.send("coucou");
                 if (trouve == 0) {
                     let job = "";
                     bot.channels.get("585504415721717771").fetchMessages({limit:99}).then(messages => {
